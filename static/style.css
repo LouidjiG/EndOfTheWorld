@@ -6,15 +6,62 @@ body {
     padding: 0;
 }
 
+* {
+    padding: 0;
+    margin: 0;
+}
+
 header {
-    background-image: url("{{ url_for('static', filename='style.css') }}");
+position: fixed;
+width: 100%;
+background-color: transparent;
+}
+
+
+.heroSection {
+    height: 75vh;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    filter: blur();
 }
 
 h1 {
+    margin: 0;
+    padding: 0;
 }
 
 
+.heroSection {
+    position: relative;
+    width: 100%;
+    height: 100vh; /* ou ajuster selon la taille de ton container */
+    overflow: hidden;
+}
 
-p {
-    font-size: 18px;
+.backgroundImage {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 75vh;
+    background-size: cover;
+    background-position: center;
+    transition: opacity 1s ease-in-out;
+    z-index: -1; /* Les images de fond sont derrière le contenu */
+}
+
+.first {
+    opacity: 1; /* L'image de fond par défaut est visible */
+}
+
+.second {
+    opacity: 0; /* L'image cachée sous la première */
+}
+
+/* On laisse les autres éléments visibles */
+.counterContainer {
+    position: relative; /* Assure que ce contenu reste au-dessus des images */
+    z-index: 1;  /* Au-dessus des images de fond */
 }
