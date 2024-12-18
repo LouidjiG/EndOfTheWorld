@@ -2,20 +2,27 @@
 <html>
 <head>
     <title>Ma Page Web</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"></head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+</head>
 <body>
 
-    <header>
+    <div class="headerContainer">
+        <header>
 
-        <h1>Logo</h1>
-        <ul>
-            <li><a href="">Link 1</a></li>
-            <li><a href="">Link 2</a></li>
-            <li><a href="">Link 3</a></li>
-            <li><a href="">Link 4</a></li>
-        </ul>
+            <h1>Logo</h1>
+            <ul>
+                <li><a href="">WHAT</a></li>
+                <li><a href="">WHY</a></li>
+                <li><a href="">HOW</a></li>
+                <li><a href="">SUBSCRIBE</a></li>
+            </ul>
 
-    </header>
+        </header>
+    </div>
 
     <main>
 
@@ -55,62 +62,6 @@
             </div>
 
             <a href="">See more</a>
-
-            <script>
-document.addEventListener('DOMContentLoaded', () => {
-    const selector = document.getElementById("country");
-    const firstImage = document.querySelector(".backgroundImage.first");
-    const secondImage = document.querySelector(".backgroundImage.second");
-
-    // Image par défaut
-    firstImage.style.backgroundImage = "url('/static/Wallpapers/293782-3840x2160-desktop-4k-paris-background-image.jpg')";
-    secondImage.style.backgroundImage = "url('/static/Wallpapers/33307-2880x1800-desktop-hd-korea-wallpaper-photo.jpg')";
-
-    // Initialiser l'opacité
-    firstImage.style.opacity = 1;
-    secondImage.style.opacity = 0;
-
-    selector.addEventListener('change', () => {
-        const selectedValue = selector.value;
-        let newImageUrl;
-
-        // Choisir l'image en fonction du pays sélectionné
-        switch (selectedValue) {
-            case 'France':
-                newImageUrl = '/static/Wallpapers/293782-3840x2160-desktop-4k-paris-background-image.jpg';
-                break;
-            case 'Corée':
-                newImageUrl = '/static/Wallpapers/33307-2880x1800-desktop-hd-korea-wallpaper-photo.jpg';
-                break;
-            case 'Togo':
-                newImageUrl = '/static/Wallpapers/641488-3000x1540-desktop-hd-togo-wallpaper.jpg';
-                break;
-            // Ajouter d'autres cas si nécessaire
-            default:
-                newImageUrl = '/static/Wallpapers/293782-3840x2160-desktop-4k-paris-background-image.jpg';
-        }
-
-        // Appliquer la nouvelle image à la deuxième image
-        secondImage.style.backgroundImage = `url('${newImageUrl}')`;
-        
-        // Rendre la deuxième image visible (opacité 1)
-        secondImage.style.opacity = 1;
-
-        // Masquer la première image en réduisant son opacité (opacité 0)
-        firstImage.style.opacity = 0;
-
-        firstImage.addEventListener('transitionend', () => {
-            const temp = firstImage.style.backgroundImage;
-            firstImage.style.backgroundImage = secondImage.style.backgroundImage;
-            secondImage.style.backgroundImage = temp;
-
-            firstImage.style.opacity = 1;
-            secondImage.style.opacity = 0;
-        }, { once: true }); 
-    });
-});
-
-            </script>
 
 
         </section>
@@ -187,45 +138,45 @@ document.addEventListener('DOMContentLoaded', () => {
         </section>
 
         <section class="mainActors">
-                <div class="country">
-                    <p>60%</p>
-                    <p>USA</p>
+                <div class="country" style="background: linear-gradient(to right, #c41313 32.9%, #2E2E2E 100%)">
+                    <p>32.9%</p>
+                    <p class="countryName">CHINA</p>
                 </div>
-                <div class="country">
-                    <p>60%</p>
-                    <p>USA</p>
+                <div class="country" style="background: linear-gradient(to right, #c43c13 12.6%, #2E2E2E 100%)">
+                    <p>12.6%</p>
+                    <p class="countryName">USA</p>
                 </div>
-                <div class="country">
-                    <p>60%</p>
-                    <p>USA</p>
+                <div class="country" style="background: linear-gradient(to right, rgb(207, 129, 40) 7%, #2E2E2E 70%)">
+                    <p>7%</p>
+                    <p class="countryName">INDIA</p>
                 </div>
-                <div class="country">
-                    <p>60%</p>
-                    <p>USA</p>
+                <div class="country" style="background: linear-gradient(to right, #c4a413 5.1%, #2E2E2E 50%)">
+                    <p>5.1%</p>
+                    <p class="countryName">RUSSIA</p>
                 </div>
-                <div class="country">
-                    <p>60%</p>
-                    <p>USA</p>
+                <div class="country" style="background: linear-gradient(to right, #b2c413 2.9%, #2E2E2E 40%)">
+                    <p>2.9%</p>
+                    <p class="countryName">JAPAN</p>
                 </div>
-                <div class="country">
-                    <p>60%</p>
-                    <p>USA</p>
+                <div class="country" style="background: linear-gradient(to right, #80c413 1.9%, #2E2E2E 30%)">
+                    <p>1.9%</p>
+                    <p class="countryName">IRAN</p>
                 </div>
-                <div class="country">
-                    <p>60%</p>
-                    <p>USA</p>
+                <div class="country" style="background: linear-gradient(to right, #28c413 1.8%, #2E2E2E 25%)">
+                    <p>1.8%</p>
+                    <p class="countryName">DEUTSCHLAND</p>
                 </div>
-                <div class="country">
-                    <p>60%</p>
-                    <p>USA</p>
+                <div class="country" style="background: linear-gradient(to right, #31c413 1.7%, #2E2E2E 25%)">
+                    <p>1.7%</p>
+                    <p class="countryName">SOUTH KOREA</p>
                 </div>
-                <div class="country">
-                    <p>60%</p>
-                    <p>USA</p>
+                <div class="country" style="background: linear-gradient(to right, #19c413 1.6%, #2E2E2E 20%)">
+                    <p>1.6%</p>
+                    <p class="countryName">INDONESIA</p>
                 </div>
-                <div class="country">
-                    <p>60%</p>
-                    <p>USA</p>
+                <div class="country" style="background: linear-gradient(to right, #13c413 1.5%, #2E2E2E 20%)">
+                    <p>1.5%</p>
+                    <p class="countryName">SAUDI ARABIA</p>
                 </div>
         </section>
 
