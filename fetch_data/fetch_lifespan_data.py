@@ -70,7 +70,6 @@ def show_lifespan_data_by_year(countries, year):
         data['country'] = country
         all_data = pd.concat([all_data, data])
 
-    # Visualize the data using Plotly
     fig = px.bar(all_data, x='country', y='NumericValue', color='Dim1', barmode='group',
                 title=f'Global Health Data by Country and Year {year}')
     fig.show()
