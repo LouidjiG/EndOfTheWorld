@@ -40,7 +40,7 @@ app.layout = html.Div([
                     {"label": "Maurice", "value": "Maurice"},
                     {"label": "Chine", "value": "Chine"},
                     {"label": "Liban", "value": "Liban"},
-                    {"label": "Marocain", "value": "Marocain"},
+                    {"label": "Maroc", "value": "Marocain"},
                 ],
                 value="France"
             ),
@@ -72,13 +72,34 @@ app.layout = html.Div([
     ]),
 
     # Section Important Facts
+
+    html.Div(className="fact", children=[html.H3("IMPORTANTS FACTS")]),
+
     html.Section(className="importantFacts", children=[
-        html.Div(className="fact", children=[html.H3("Morts prématurés")]),
-        html.Div(className="fact", children=[html.H3("Plomb dans le cerveau")]),
-        html.Div(className="fact", children=[html.H3("Plastique dans le corps humain")]),
-        html.Div(className="fact", children=[html.H3("Réduction de l'espérance de vie")]),
-        html.Div(className="fact", children=[html.H3("Effets du changement climatique")]),
+        html.Div(className="fact", children=[
+            html.H3("MORTS PREMATURES"),
+            html.P("79 884 002"),
+            html.P("People")
+            ]),
+        html.Div(className="fact", children=[
+            html.H3("PLOMB DANS LE CERVEAU"),
+            html.P("800"),
+            html.P("Millions d'enfants")
+            ]),
+        html.Div(className="fact", children=[
+            html.H3("PLASTIQUE DANS LE CORPS HUMAIN"),
+            html.P("121 000"),
+            html.P("Particules de microplastique")
+            ]),
+        html.Div(className="fact", children=[
+            html.H3("REDUCTION DE L'ESPERANCE DE VIE"),
+            html.P("-6"),
+            html.P("ans")
+            ]),
+
     ]),
+    
+    html.Div(className="fact", children=[html.H3("Effets du changement climatique")]),
 
     # Section Facts Graphs
     html.Section(className="factsGraphs", children=[

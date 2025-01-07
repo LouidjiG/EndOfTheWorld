@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100;300;400;500;700&display=swap');
+
 body {
     font-family: Arial, sans-serif;
     background-color: #f0f0f0;
@@ -82,4 +84,32 @@ h1 {
 
 .mainActors .country :first-child {
     width: 300px;
+}
+.importantFacts {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: auto;
+    background-color: white;
+    gap: 30px;
+    height: 600px;
+    padding: 70px 0;
+}
+
+.fact {
+    font-family: Raleway;
+    font-size: larger;
+    color: #3F3F3F;
+    display: block;
+    background: #FAFAFA;
+    padding: 25px;
+    margin: 10px;
+    width: 500px;
+    box-sizing: border-box; 
+    text-align: left;
+}
+
+.fact h3 {
+    
 }
