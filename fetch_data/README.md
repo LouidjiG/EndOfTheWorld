@@ -25,8 +25,6 @@
    pip install -r requirements.txt
    ```
 
-5. Set up environment variables in the `.env` file.
-
 ## Usage
 To start the backend application, run:
 ```
@@ -40,14 +38,15 @@ python src/main.py
 - **Earthquake**:
   - [earthquake usgs gov](https://earthquake.usgs.gov/)
 
-- **Human Lifespan**:
+- **Human Lifespan and health realated data**:
   - [Global health data](https://ghoapi.azureedge.net/)
 
 - **Natural disaster**
   - [Natural disaster](gdacs.api)
-  
-## Contributing
-Contributions are welcome! Please open an issue or submit a pull request for any improvements or features.
+
+## the Model
+Idea: We gather data on mortality rates by country for a specific year. We will cross-reference this data with greenhouse gas emissions by country, natural disaster datas and specifically earthquake datas.
+As input, the user specifies their country (or continent), and we retrieve the environmental, social, and economic data for that location. We run the model, and boom—we get the year of death!
 
 list of country:
 - France 

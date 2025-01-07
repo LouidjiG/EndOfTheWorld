@@ -51,4 +51,5 @@ countries3 = ['france', 'italia', 'china', 'madagascar', 'russia', 'togo',
               'south korea', 'vietnam', 'algeria', 'burkina faso', 'MUS',
               'lebanon']
 
+
 visualize_air_quality(countries3)

@@ -19,6 +19,4 @@ https://earthdata.nasa.gov/                  datas about environemental metrics 
 ### Human lifespan (death rate and their cause)
 https://www.worldometers.info/               Datas about human death rate in the world.
 
-## Comment entrainer notre model?
-Idée: On récupere les données sur la mortalité des personnes par pays pour une année précise. On croisera ces données avec les emissions de GES par pays et peut être d'autres données qu'on aura réccuperer.  
-En input, l'utilisateur indique son pays (ou continent) et on recupère les données environnemental / social / économique de ce pays. On fait tourner le model et bim on a l'année de la mort!
+
