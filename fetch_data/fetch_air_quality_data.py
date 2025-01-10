@@ -20,7 +20,8 @@ def get_WAQI_air_quality_data(country):
     response = response.json()
     relevant_data  = ['aqi', 'dominentpol']
     df = pd.json_normalize(response['data'])
-    return df[relevant_data]
+    # return df[relevant_data]
+    return df
 
 def visualize_air_quality(list_of_countries):
     """Visualizes air quality data on a map using Plotly
@@ -52,4 +53,4 @@ countries3 = ['france', 'italia', 'china', 'madagascar', 'russia', 'togo',
               'lebanon']
 
 
-visualize_air_quality(countries3)
+# visualize_air_quality(countries3)

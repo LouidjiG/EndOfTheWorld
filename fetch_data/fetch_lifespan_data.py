@@ -8,7 +8,7 @@ import plotly.express as px
 ISO3166_codes = ['FRA', 'ITA', 'CHN', 'MDG', 'RUS', 'TGO', 'KOR', 'VNM', 'DZA', 'BFA', 'MUS', 'LBN', 'MAR']
 
 def fetch_lifespan_data(country):
-    """Fetches global health data for a given country
+    """Fetches Lifespan data for a given country
 
     Args:
         country (string): ISO 3166-1 alpha-3 country code
@@ -76,5 +76,4 @@ def show_lifespan_data_by_year(countries, year):
 
 # Example usage
 # show_lastest_lifespan_data(ISO3166_code)
-show_lifespan_data_by_year(ISO3166_codes, 2020)
-print(get_lastest_lifespan_data("FRA"))
+# show_lifespan_data_by_year(ISO3166_codes, 2020)

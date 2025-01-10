@@ -79,8 +79,23 @@ def visualize_natural_disaster_data(df):
     fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
     fig.show()
 
+def get_natural_disaster_occurence(country, limit=100):
+    """Get the number of natural disasters that occured in a country for the past N events
+
+    Args:
+        country (string): country name, e.g. 'France'
+        limit (int, optional): limit of number of events studied. Defaults to 100.
+
+    Returns:
+        int: number of occurence of disasters in the given country
+    """
+    natural_disaster_data = get_natural_disaster_data(limit)
+    natural_disaster_data = natural_disaster_data[natural_disaster_data['country'] == country].shape[0]
+    return natural_disaster_data
+    
 
 # Example usage
-natural_disaster_data = get_natural_disaster_data(200)
-visualize_natural_disaster_data(natural_disaster_data)
-print(natural_disaster_data)
+# natural_disaster_data = get_natural_disaster_data(100)
+# visualize_natural_disaster_data(natural_disaster_data)
+# print(get_natural_disaster_occurence('Sudan', 100))
+
