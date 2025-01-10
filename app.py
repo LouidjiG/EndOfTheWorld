@@ -3,16 +3,31 @@ from dash import dcc, html
 from fetch_data.fetch_natural_disaster_data import get_natural_disaster_data, visualize_natural_disaster_data
 from dash.dependencies import Input, Output, State
 import datetime
+from fetch_data.calculate_doomsday_year import calculate_doomsday_year, calculate_time_left
 
-
+doomsday_country_cache = {}
 
 app = dash.Dash(__name__, external_stylesheets=[
     "https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap",
     "/assets/style.css" 
 ])
 
-end_time = datetime.datetime(2040, 1, 1, 0, 0, 0)
 
+country = {
+    "France": "FRA", 
+    "Italie": "ITA", 
+    "Chine": "CHN", 
+    "Madagascar": "MDG", 
+    "Thétchénie": "RUS", 
+    "Togo": "TGO", 
+    "Corée": "KOR",
+    "Vietnam": "VNM", 
+    "Algérie": "DZA", 
+    "Burkina Faso": "BFA", 
+    "Maurice": "MUS", 
+    "Liban": "LBN", 
+    "Maroc": "MAR"
+    }
 
 app.layout = html.Div([
     html.Section(className="heroSection", id="heroSection", children=[
@@ -41,29 +56,30 @@ app.layout = html.Div([
                 value="France"
             ),
             html.Div(className="counter", children=[
+                
                 html.Div(className="countDiv", children=[
                     html.P("ANNEES"),
-                    html.P(id="years", children="15"),
+                    html.P(id="years", children=0),
                 ]),
                 html.Div(className="countDiv", children=[
                     html.P("MOIS"),
-                    html.P(id="months", children="08"),
+                    html.P(id="months", children=0),
                 ]),
                 html.Div(className="countDiv", children=[
                     html.P("JOURS"),
-                    html.P(id="days", children="27"),
+                    html.P(id="days", children=0),
                 ]),
                 html.Div(className="countDiv", children=[
                     html.P("HEURES"),
-                    html.P(id="hours", children="19"),
+                    html.P(id="hours", children=0),
                 ]),
                 html.Div(className="countDiv", children=[
                     html.P("MINUTES"),
-                    html.P(id="minutes", children="55"),
+                    html.P(id="minutes", children=0),
                 ]),
                 html.Div(className="countDiv", children=[
                     html.P("SECONDES"),
-                    html.P(id="seconds", children="59"),
+                    html.P(id="seconds", children=0),
                 ])
             ])
         ]),
@@ -224,27 +240,26 @@ app.layout = html.Div([
         Output("minutes", "children"),
         Output("seconds", "children"),
     ],
-    [Input("interval-component", "n_intervals")]  # Mise à jour toutes les secondes
+    [
+        Input("interval-component", "n_intervals"),
+        Input("country", "value")
+    ]
 )
-def update_counter(n_intervals):
-    # Calcul du temps restant
-    now = datetime.datetime.now()
-    delta = end_time - now
+def update_counter(n_intervals, selected_country):
+    if selected_country not in doomsday_country_cache:
+        doomsday_country_cache[selected_country] = calculate_doomsday_year(country[selected_country])
+    doomsday_year = doomsday_country_cache[selected_country]
+    
+    current_date = datetime.datetime.now()
+    years_left = doomsday_year - current_date.year
+    months_left = 12 - current_date.month
+    days_left = 31 - current_date.day
+    hours_left = 24 - current_date.hour
+    minutes_left = 60 - current_date.minute
+    seconds_left = 60 - current_date.second
 
-    if delta.total_seconds() > 0:
-        # Décompose le temps restant
-        years = delta.days // 365
-        months = (delta.days % 365) // 30
-        days = (delta.days % 365) % 30
-        hours = delta.seconds // 3600
-        minutes = (delta.seconds % 3600) // 60
-        seconds = delta.seconds % 60
-
-        return years, months, days, hours, minutes, seconds
-    else:
-        # Temps écoulé
-        return 0, 0, 0, 0, 0, 0
-
+    return years_left, months_left, days_left, hours_left, minutes_left, seconds_left
+    
 @app.callback(
     Output("heroSection", "style"),  # Met à jour le style de la section Hero
     Input("country", "value")       # Surveille les changements dans le Dropdown

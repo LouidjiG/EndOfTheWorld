@@ -139,7 +139,7 @@ def fetch_death_by_disease_data(country, year=None):
         print(f"An error occurred: {e}")
         return None
 
-# print(fetch_HIV_related_death_data('FRA'))
-# print(fetch_health_personnel_data('FRA'))
-# print(fetch_death_by_disease_data('FRA'))
-# print(get_critical_medical_population('France'))
+# print(fetch_HIV_related_death_data('CHN'))
+# print(fetch_health_personnel_data('CHN'))
+# print(fetch_death_by_disease_data('CHN'))
+# print(get_critical_medical_population('China'))

@@ -2,6 +2,9 @@ import pandas as pd
 import requests
 import plotly.express as px
 # WAQI aire quality token: 21abc0384d5f519b7a35d9c75293845ddb4e8a23
+countries3 = {'FRA':'france', 'ITA': 'italia', 'CHN': 'china', 'MDG': 'madagascar', 'RUS': 'russia',
+              'TGO': 'togo', 'KOR': 'south korea', 'VNM': 'vietnam', 'DZA': 'algeria', 'BFA': 'burkina faso', 
+              'MUS': 'MUS', 'LBN': 'lebanon'}
 
 def get_WAQI_air_quality_data(country):
     """Fetches air quality data for a given city
@@ -14,14 +17,16 @@ def get_WAQI_air_quality_data(country):
             aqi (int): air quality index, the greater the worse
             dominentpol (string): dominent pollutant
     """
+    if country.lower() not in countries3.values():
+        country = countries3[country]
+
     token = '21abc0384d5f519b7a35d9c75293845ddb4e8a23'
     url = f'https://api.waqi.info/feed/{country}/?token={token}'
     response = requests.get(url)
     response = response.json()
     relevant_data  = ['aqi', 'dominentpol']
     df = pd.json_normalize(response['data'])
-    # return df[relevant_data]
-    return df
+    return df[relevant_data]
 
 def visualize_air_quality(list_of_countries):
     """Visualizes air quality data on a map using Plotly
@@ -48,9 +53,7 @@ def visualize_air_quality(list_of_countries):
 
 # Example usage
 ########## GOT A PROBLEM HERE WITH MOROCCO ##########
-countries3 = ['france', 'italia', 'china', 'madagascar', 'russia', 'togo',
-              'south korea', 'vietnam', 'algeria', 'burkina faso', 'MUS',
-              'lebanon']
+
 
 
 # visualize_air_quality(countries3)
