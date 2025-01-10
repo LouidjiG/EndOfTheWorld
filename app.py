@@ -1,25 +1,21 @@
 import dash
 from dash import dcc, html
+from fetch_data.fetch_natural_disaster_data import get_natural_disaster_data, visualize_natural_disaster_data
+from dash.dependencies import Input, Output, State
+import datetime
+
+
 
 app = dash.Dash(__name__, external_stylesheets=[
     "https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap",
     "/assets/style.css" 
 ])
 
-app.layout = html.Div([
-    html.Div(className="headerContainer", children=[
-        html.Header([
-            html.H1("Logo"),
-            html.Ul([
-                html.Li(html.A("WHAT", href="#")),
-                html.Li(html.A("WHY", href="#")),
-                html.Li(html.A("HOW", href="#")),
-                html.Li(html.A("SUBSCRIBE", href="#")),
-            ])
-        ])
-    ]),
+end_time = datetime.datetime(2040, 1, 1, 0, 0, 0)
 
-    html.Section(className="heroSection", children=[
+
+app.layout = html.Div([
+    html.Section(className="heroSection", id="heroSection", children=[
         html.Div(className="backgroundImage first"),
         html.Div(className="backgroundImage second"),
 
@@ -32,7 +28,7 @@ app.layout = html.Div([
                     {"label": "Madagascar", "value": "Madagascar"},
                     {"label": "Togo", "value": "Togo"},
                     {"label": "Algérie", "value": "Algérie"},
-                    {"label": "Burkina Faso", "value": "Burkina Faso"},
+                    {"label": "Burkina Faso", "value": "BurkinaFaso"},
                     {"label": "Italie", "value": "Italie"},
                     {"label": "Corée", "value": "Corée"},
                     {"label": "Vietnam", "value": "Vietnam"},
@@ -40,22 +36,45 @@ app.layout = html.Div([
                     {"label": "Maurice", "value": "Maurice"},
                     {"label": "Chine", "value": "Chine"},
                     {"label": "Liban", "value": "Liban"},
-                    {"label": "Maroc", "value": "Marocain"},
+                    {"label": "Maroc", "value": "Maroc"},
                 ],
                 value="France"
             ),
             html.Div(className="counter", children=[
-                html.P("Années"),
-                html.P("Mois"),
-                html.P("Jours"),
-                html.P("Heures"),
-                html.P("Minutes"),
-                html.P("Secondes"),
-                html.P("15 08 27 19 55 03")
+                html.Div(className="countDiv", children=[
+                    html.P("ANNEES"),
+                    html.P(id="years", children="15"),
+                ]),
+                html.Div(className="countDiv", children=[
+                    html.P("MOIS"),
+                    html.P(id="months", children="08"),
+                ]),
+                html.Div(className="countDiv", children=[
+                    html.P("JOURS"),
+                    html.P(id="days", children="27"),
+                ]),
+                html.Div(className="countDiv", children=[
+                    html.P("HEURES"),
+                    html.P(id="hours", children="19"),
+                ]),
+                html.Div(className="countDiv", children=[
+                    html.P("MINUTES"),
+                    html.P(id="minutes", children="55"),
+                ]),
+                html.Div(className="countDiv", children=[
+                    html.P("SECONDES"),
+                    html.P(id="seconds", children="59"),
+                ])
             ])
         ]),
-        html.A("See more", href="#")
-    ]),
+
+        dcc.Interval(
+            id="interval-component",
+            interval=1000,  # 1 seconde (1000 ms)
+            n_intervals=0,  # Initialisation
+        )
+        
+    ]),    
 
     # Section Map
     html.Section(className="map", children=[
@@ -73,7 +92,13 @@ app.layout = html.Div([
 
     # Section Important Facts
 
-    html.Div(className="fact", children=[html.H3("IMPORTANTS FACTS")]),
+    
+
+
+    html.Div(className="fact", children=[html.H3("CLIMATE CHANGING EFFECTS")]),
+
+
+    
 
     html.Section(className="importantFacts", children=[
         html.Div(className="fact", children=[
@@ -98,8 +123,9 @@ app.layout = html.Div([
             ]),
 
     ]),
+
     
-    html.Div(className="fact", children=[html.H3("Effets du changement climatique")]),
+    
 
     # Section Facts Graphs
     html.Section(className="factsGraphs", children=[
@@ -112,7 +138,7 @@ app.layout = html.Div([
     # Section Why
     html.Section(className="why", children=[
         html.P("WHY ?"),
-        html.P("Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolorum, quis cupiditate quasi sequi doloribus accusamus quae optio facilis esse nulla minus a ipsum perspiciatis dignissimos voluptatibus. Praesentium deserunt sit aperiam."),
+        html.H2("C'EST DE LEUR FAUTE"),
     ]),
 
     # Section Why Graphs
@@ -188,6 +214,53 @@ app.layout = html.Div([
         html.P("©... Copyrights 2025")
     ])
 ])
+
+@app.callback(
+    [
+        Output("years", "children"),
+        Output("months", "children"),
+        Output("days", "children"),
+        Output("hours", "children"),
+        Output("minutes", "children"),
+        Output("seconds", "children"),
+    ],
+    [Input("interval-component", "n_intervals")]  # Mise à jour toutes les secondes
+)
+def update_counter(n_intervals):
+    # Calcul du temps restant
+    now = datetime.datetime.now()
+    delta = end_time - now
+
+    if delta.total_seconds() > 0:
+        # Décompose le temps restant
+        years = delta.days // 365
+        months = (delta.days % 365) // 30
+        days = (delta.days % 365) % 30
+        hours = delta.seconds // 3600
+        minutes = (delta.seconds % 3600) // 60
+        seconds = delta.seconds % 60
+
+        return years, months, days, hours, minutes, seconds
+    else:
+        # Temps écoulé
+        return 0, 0, 0, 0, 0, 0
+
+@app.callback(
+    Output("heroSection", "style"),  # Met à jour le style de la section Hero
+    Input("country", "value")       # Surveille les changements dans le Dropdown
+)
+def update_background_image(selected_country):
+    # Chemin de l'image basé sur le pays sélectionné
+    image_path = f"/static/Wallpapers/{selected_country}.jpg"
+    # Retourne un style CSS pour définir l'image en fond
+    return {
+        "backgroundImage": f"url({image_path})",
+        "backgroundSize": "cover",
+        "backgroundPosition": "center",
+        "height": "100vh",  # Ajuste la hauteur pour couvrir l'écran
+        "width": "100%"
+    }
+
 
 # Lancer l'application
 if __name__ == '__main__':

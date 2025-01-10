@@ -89,7 +89,7 @@ def visualize_earthquake_data(df):
     fig.show()
 
 # Example usage
-starttime = '2021-01-01'
+starttime = '2020-01-01'
 endtime = '2021-01-10'
-earthquake_data = get_earthquake_data(starttime, endtime, 1, 10)
+earthquake_data = get_earthquake_data(starttime, endtime, 5, 10)
 visualize_earthquake_data(earthquake_data)

@@ -15,7 +15,7 @@ body {
 
 .headerContainer {
     display: block;
-    height: 70px;
+    height: 55px;
 }
 
 header {
@@ -44,14 +44,25 @@ header a {
 
 }
 
-
 .heroSection {
+    position: relative;
     height: 75vh;
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    filter: blur();
+    z-index: 0; /* Garantit que le contenu reste au-dessus de l'overlay */
+}
+
+.heroSection::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5); /* Sombre l'image avec 50% de transparence */
+    z-index: -1; /* Place l'overlay en dessous du contenu, pour ne pas interférer avec les interactions */
 }
 
 h1 {
@@ -110,6 +121,29 @@ h1 {
     text-align: left;
 }
 
-.fact h3 {
-    
+.counter {
+    color: white;
+    text-decoration: none;
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 200px;
+
+}
+
+.counter .countDiv {
+    flex-direction: column;
+}
+
+.counter .countDiv p:nth-child(2) {
+    display: block;
+    font-size: 100px;
+    font-weight: 900;
+    margin: auto;
+}
+
+.counter .countDiv p:nth-child(1) {
+    display: block;
+    margin: auto;
+    text-align: center;
+
 }

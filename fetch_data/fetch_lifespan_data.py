@@ -77,3 +77,4 @@ def show_lifespan_data_by_year(countries, year):
 # Example usage
 # show_lastest_lifespan_data(ISO3166_code)
 show_lifespan_data_by_year(ISO3166_codes, 2020)
+print(get_lastest_lifespan_data("FRA"))
