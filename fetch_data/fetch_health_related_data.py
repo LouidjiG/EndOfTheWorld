@@ -101,9 +101,14 @@ def fetch_health_personnel_data(country, year=None):
                 df = df[(df['TimeDim'] == year)]
                 return df
             else:
-                df = df[(df['SpatialDim'] == country)]
+                if df[(df['SpatialDim'] == country)].size == 0:
+                    percentageOfNotDying = 1-1/fetch_death_by_disease_data(country=country)['NumericValue']
+                    return df['NumericValue'].median() 
+                else: 
+                    df = df[(df['SpatialDim'] == country)]
                 return df
 
+            
         else:
             print(f"Failed to fetch data: {response.status_code}")
             return None
@@ -146,7 +151,9 @@ def fetch_death_by_disease_data(country, year=None):
         return None
 
 # print(fetch_HIV_related_death_data('RUS'))
-# print(fetch_health_personnel_data('RUS'))
-# print(fetch_death_by_disease_data('RUS'))
+print(fetch_health_personnel_data('CHN'))
+print(fetch_death_by_disease_data('CHN'))
 # print(get_critical_medical_population('RUS'))
 # print(get_population('France'))
+
+# 1.0.PSev.Poor4uds
