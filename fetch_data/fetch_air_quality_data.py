@@ -55,5 +55,4 @@ def visualize_air_quality(list_of_countries):
 ########## GOT A PROBLEM HERE WITH MOROCCO ##########
 
 
-
 # visualize_air_quality(countries3)

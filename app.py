@@ -18,7 +18,7 @@ country = {
     "Italie": "ITA", 
     "Chine": "CHN", 
     "Madagascar": "MDG", 
-    "Thétchénie": "RUS", 
+    "Tchétchénie": "RUS", 
     "Togo": "TGO", 
     "Corée": "KOR",
     "Vietnam": "VNM", 

@@ -131,7 +131,7 @@ def calculate_time_left(doomsday_year):
 
 # #---- Doomsday Year Calculation ----#
 # print('\n---- Doomsday Year Calculation ----')
-# for country in ['FRA', 'ITA', 'CHN', 'MDG', 'RUS', 'TGO', 'KOR', 'VNM', 'DZA', 'BFA', 'MUS', 'LBN', 'MAR']:
+# for country in ['FRA', 'ITA', 'MDG', 'RUS', 'TGO', 'KOR', 'VNM', 'DZA', 'BFA', 'MUS', 'LBN', 'MAR']:
 #      print(f"\n---- {country} ----")
 #      doomsday_year = calculate_doomsday_year(country)
 #      print(f"{country}: {doomsday_year}")
