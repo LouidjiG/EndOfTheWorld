@@ -65,7 +65,6 @@ def calculate_doomsday_year(country):
         'BFA': 'Burkina Faso', 
         'MUS': 'Mauritius', 
         'LBN': 'Lebanon', 
-        'MAR': 'Morocco'
         }
 
     health_personnel = fetch_health_personnel_data(country)
@@ -130,11 +129,11 @@ def calculate_time_left(doomsday_year):
     }
 
 # #---- Doomsday Year Calculation ----#
-print('\n---- Doomsday Year Calculation ----')
-for country in ['FRA', 'ITA', 'CHN', 'MDG', 'RUS', 'TGO', 'KOR', 'VNM', 'DZA', 'BFA', 'MUS', 'LBN', 'MAR']:
-     print(f"\n---- {country} ----")
-     doomsday_year = calculate_doomsday_year(country)
-     print(f"{country}: {doomsday_year}")
+# print('\n---- Doomsday Year Calculation ----')
+# for country in ['FRA', 'ITA', 'CHN', 'MDG', 'RUS', 'TGO', 'KOR', 'VNM', 'DZA', 'BFA', 'MUS', 'LBN']:
+#      print(f"\n---- {country} ----")
+#      doomsday_year = calculate_doomsday_year(country)
+#      print(f"{country}: {doomsday_year}")
 
 
 

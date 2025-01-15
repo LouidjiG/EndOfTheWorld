@@ -48,6 +48,8 @@ def get_population(country):
     
     if country == 'Russia':
         return pd.DataFrame({'population': [145912025]})
+    if country == 'South Korea':
+        return pd.DataFrame({'population': [51780579]})
     if country == 'Burkina Faso':
         return pd.DataFrame({'population': [20903273]})
     
@@ -79,7 +81,15 @@ def get_critical_medical_population(country):
 
 
 def fetch_health_personnel_data(country, year=None):
-    """Generalist medical practitioners (number)"
+    """Generalist medical practitioners (number) f, there is no data for the health personnel in a country,
+    We estimate the number of health personnel needed based on the number of death by a disease in the country.
+    Here are the details of the estimation:
+    estimation = Median * (alpha + beta/percentageOfDyingPeople)  
+    Median: median number of health personnel in the world
+    alpha: A scaling factor (e.g. 0.5 adjusts the baseline number to half the global median for very high mortality rates).
+    beta: A parameter to adjust the sensitivity of the estimation to the mortality rate (default value is 1).
+    percentageOfDyingPeople: Probability (%) of dying between age 30 and exact age 70 some deseases.
+
     Args:
         country (string): country ISO 3166-1 alpha-3 code
         year (int, optional): year. Defaults to None, which means every possible year.
@@ -102,8 +112,13 @@ def fetch_health_personnel_data(country, year=None):
                 return df
             else:
                 if df[(df['SpatialDim'] == country)].size == 0:
-                    percentageOfNotDying = 1-1/fetch_death_by_disease_data(country=country)['NumericValue']
-                    return df['NumericValue'].median() 
+                    percentageOfDying = 1/fetch_death_by_disease_data(country=country)['NumericValue'].values[0]
+                    median = df['NumericValue'].median()  
+                    alpha = 0.5
+                    beta = 1
+                    estimation = median * (alpha + beta/percentageOfDying)
+                    return pd.DataFrame({'SpatialDim': [country], 'TimeDim': [2021], 'NumericValue': [estimation]})
+
                 else: 
                     df = df[(df['SpatialDim'] == country)]
                 return df
@@ -151,8 +166,9 @@ def fetch_death_by_disease_data(country, year=None):
         return None
 
 # print(fetch_HIV_related_death_data('RUS'))
-print(fetch_health_personnel_data('CHN'))
-print(fetch_death_by_disease_data('CHN'))
+# print(fetch_health_personnel_data('CHN'))
+# print(get_population('South Korea'))
+# print(fetch_death_by_disease_data('CHN'))
 # print(get_critical_medical_population('RUS'))
 # print(get_population('France'))
 
