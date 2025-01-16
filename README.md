@@ -61,6 +61,25 @@ L: Average lifespan of a technological civilization (what we want to estimate)
 
 This equations gives us appriximately 151,515 years before the end of the human civilisation.
 
+Our calculation:
+We calculate a multiplier that will be between 0 and 1 based on the proportion of health personnel, the quality of the air, the death rate for some types of deseases, the occurence of some natural disaster and the lifespan. All of those datas are categorised by country. Here is a more precise way of how we calculate the multiplicator:
+- health_personnel_score = min(critical number of health personnel / actual number of health personnel, 1)
+- air_quality_score = min(1, actual air quality / critical air quality)
+- death_disease_score = min(1, death rate / critical death rate)
+- disaster_occurence_score = min(1, disaster occurence/100)
+- lifespan_score = 1 if lifespan is over 70yo and 0 if not.
+
+We then use weights for those value: 
+weights = {
+        "health_personnel": 0.2,
+        "death_disease": 0.3,
+        "natural_disaster_frequency": 0.2,
+        "air_quality": 0.1,
+        "lifespan": 0.2
+    }
+And calculate the overall score using those weights and values.
+we then calculate the doomsday year by multiplying (1-overall_score) and the Drake's equation value.
+
 list of country:
 - France 
 - Madagascar
