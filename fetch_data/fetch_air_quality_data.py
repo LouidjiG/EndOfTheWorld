@@ -48,7 +48,7 @@ def visualize_air_quality(list_of_countries):
     fig = px.bar(df, x='country', y='aqi', color='dominentpol',
                  title='Air Quality Index by Country', 
                  labels={'aqi': 'Air Quality Index', 'country': 'Country'})
-    fig.show()
+    return fig
 
 
 # Example usage

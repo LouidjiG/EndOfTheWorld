@@ -86,7 +86,7 @@ def visualize_earthquake_data(df):
     )
     fig.update_layout(mapbox_style="open-street-map")
     fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
-    fig.show()
+    return fig
 
 # Example usage
 # starttime = '2021-01-01'
