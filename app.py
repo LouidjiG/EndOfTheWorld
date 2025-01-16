@@ -26,7 +26,6 @@ country = {
     "Burkina Faso": "BFA", 
     "Maurice": "MUS", 
     "Liban": "LBN", 
-    "Maroc": "MAR"
     }
 
 app.layout = html.Div([
@@ -35,26 +34,28 @@ app.layout = html.Div([
         html.Div(className="backgroundImage second"),
 
         html.Div(className="counterContainer", children=[
-            html.P("Remaining before the end of humanity in", className="remainingTime"),
-            dcc.Dropdown(
-                id="country",
-                options=[
-                    {"label": "France", "value": "France"},
-                    {"label": "Madagascar", "value": "Madagascar"},
-                    {"label": "Togo", "value": "Togo"},
-                    {"label": "Algérie", "value": "Algérie"},
-                    {"label": "Burkina Faso", "value": "BurkinaFaso"},
-                    {"label": "Italie", "value": "Italie"},
-                    {"label": "Corée", "value": "Corée"},
-                    {"label": "Vietnam", "value": "Vietnam"},
-                    {"label": "Tchétchénie", "value": "Tchétchénie"},
-                    {"label": "Maurice", "value": "Maurice"},
-                    {"label": "Chine", "value": "Chine"},
-                    {"label": "Liban", "value": "Liban"},
-                    {"label": "Maroc", "value": "Maroc"},
-                ],
-                value="France"
-            ),
+            html.Div(className="remainingTimeContainer", children=[
+                html.P("Remaining before the end of humanity in", className="remainingTime"),
+                dcc.Dropdown(
+                    id="country",
+                    options=[
+                        {"label": "France", "value": "France"},
+                        {"label": "Madagascar", "value": "Madagascar"},
+                        {"label": "Togo", "value": "Togo"},
+                        {"label": "Algérie", "value": "Algérie"},
+                        {"label": "Burkina Faso", "value": "BurkinaFaso"},
+                        {"label": "Italie", "value": "Italie"},
+                        {"label": "Corée", "value": "Corée"},
+                        {"label": "Vietnam", "value": "Vietnam"},
+                        {"label": "Tchétchénie", "value": "Tchétchénie"},
+                        {"label": "Maurice", "value": "Maurice"},
+                        {"label": "Chine", "value": "Chine"},
+                        {"label": "Liban", "value": "Liban"},
+                    ],
+                    value="France",
+                    className="countryDropdown"
+                ),
+            ]),
             html.Div(className="counter", children=[
                 
                 html.Div(className="countDiv", children=[
@@ -102,7 +103,8 @@ app.layout = html.Div([
                 {"label": "Biodiversity and alimentary security", "value": "biodiversity"},
                 {"label": "Plastic pollution", "value": "plastic"},
             ],
-            value="health"
+            value="health",
+            className="mapsDropdown"
         )
     ]),
 
