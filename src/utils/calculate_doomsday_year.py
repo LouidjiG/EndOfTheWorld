@@ -12,37 +12,6 @@ import numpy as np
 import plotly.express as px
 from datetime import datetime, timedelta
 
-# #---- Health Personnel Data ----#
-# print('\n---- Health Personnel Data ----')
-# df_health_personnel = fetch_health_personnel_data('FRA')
-# df_health_personnel = df_health_personnel[df_health_personnel['TimeDim'] == df_health_personnel['TimeDim'].max()]['NumericValue'].values[0]
-# print(df_health_personnel)
-
-# #---- Death by Disease Data ----#
-# print('\n---- Death by Disease Data ----')
-# df_death_disease = fetch_death_by_disease_data('FRA')
-# df_death_disease = df_death_disease[df_death_disease['TimeDim'] == df_death_disease['TimeDim'].max()]
-# df_death_disease = df_death_disease['NumericValue'].values[0]
-# print(df_death_disease)
-
-# #---- HIV Related Death Data ----#
-# print('\n---- HIV Related Death Data ----')
-# df_HIV_related_death = fetch_HIV_related_death_data('FRA')
-# df_HIV_related_death = df_HIV_related_death[df_HIV_related_death['TimeDim'] == df_HIV_related_death['TimeDim'].max()]['NumericValue'].values[0]
-# print(df_HIV_related_death)
-
-# #---- Lifespan Data ----#
-# print('\n---- Lifespan Data ----')
-# df_lifespan = fetch_lifespan_data('FRA')
-# df_lifespan = df_lifespan[df_lifespan['TimeDim'] == df_lifespan['TimeDim'].max()]
-# df_lifespan = df_lifespan[df_lifespan['Dim1'] == 'SEX_BTSX']['NumericValue'].values[0]
-# print(df_lifespan)
-
-# #---- Air Quality Data ----#
-# print('\n---- Air Quality Data ----')
-# df_air_quality = get_WAQI_air_quality_data('FRA')['aqi'].values[0]
-# print(df_air_quality)
-
 def calculate_doomsday_year(country):
     """Calculates the doomsday year for a given country
 
@@ -134,11 +103,11 @@ def calculate_time_left(doomsday_year):
     }
 
 # #---- Doomsday Year Calculation ----#
-print('\n---- Doomsday Year Calculation ----')
-for country in ['FRA', 'ITA', 'CHN', 'MDG', 'RUS', 'TGO', 'KOR', 'VNM', 'DZA', 'BFA', 'MUS', 'LBN']:
-     print(f"\n---- {country} ----")
-     doomsday_year = calculate_doomsday_year(country)
-     print(f"{country}: {doomsday_year}")
+# print('\n---- Doomsday Year Calculation ----')
+# for country in ['FRA', 'ITA', 'CHN', 'MDG', 'RUS', 'TGO', 'KOR', 'VNM', 'DZA', 'BFA', 'MUS', 'LBN']:
+#      print(f"\n---- {country} ----")
+#      doomsday_year = calculate_doomsday_year(country)
+#      print(f"{country}: {doomsday_year}")
 
 
 
