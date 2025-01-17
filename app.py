@@ -53,7 +53,9 @@ app.layout = html.Div([
                         {"label": "Liban", "value": "Liban"},
                     ],
                     value="France",
-                    className="countryDropdown"
+                    className="countryDropdown",
+                    clearable=False
+
                 ),
             ]),
             html.Div(className="counter", children=[
@@ -98,13 +100,14 @@ app.layout = html.Div([
         dcc.Dropdown(
             id="filter",
             options=[
-                {"label": "Effects on human health", "value": "health"},
-                {"label": "Pollution and climate changes", "value": "pollution"},
-                {"label": "Biodiversity and alimentary security", "value": "biodiversity"},
-                {"label": "Plastic pollution", "value": "plastic"},
+                {"label": "Air Quality", "value": "health"},
+                {"label": "Earthquakes", "value": "pollution"},
+                {"label": "Lifespan", "value": "biodiversity"},
+                {"label": "Natural disasters", "value": "plastic"},
             ],
             value="health",
-            className="mapsDropdown"
+            className="mapsDropdown",
+            clearable=False
         ),
         html.Div(className="mapDiv", children=[
             # TODO
