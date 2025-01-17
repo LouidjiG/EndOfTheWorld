@@ -1,9 +1,8 @@
 import dash
 from dash import dcc, html
-from fetch_data.fetch_natural_disaster_data import get_natural_disaster_data, visualize_natural_disaster_data
 from dash.dependencies import Input, Output, State
 import datetime
-from fetch_data.calculate_doomsday_year import calculate_doomsday_year, calculate_time_left
+from src.utils.calculate_doomsday_year import calculate_doomsday_year
 
 doomsday_country_cache = {}
 
@@ -17,6 +16,7 @@ country = {
     "France": "FRA", 
     "Italie": "ITA", 
     "Chine": "CHN", 
+    "BurkinaFaso": "BFA",
     "Madagascar": "MDG", 
     "Tchétchénie": "RUS", 
     "Togo": "TGO", 

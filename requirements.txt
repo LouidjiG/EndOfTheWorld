@@ -8,3 +8,4 @@ requests-cache>=0.7.4
 retry-requests>=1.0.0
 gdacs.api>=0.1.0
 plotly>=5.3.1
+geojson>=2.5.0
