@@ -26,7 +26,6 @@ country = {
     "Burkina Faso": "BFA", 
     "Maurice": "MUS", 
     "Liban": "LBN", 
-    "Maroc": "MAR"
     }
 
 app.layout = html.Div([
@@ -35,26 +34,28 @@ app.layout = html.Div([
         html.Div(className="backgroundImage second"),
 
         html.Div(className="counterContainer", children=[
-            html.P("Remaining before the end of humanity in", className="remainingTime"),
-            dcc.Dropdown(
-                id="country",
-                options=[
-                    {"label": "France", "value": "France"},
-                    {"label": "Madagascar", "value": "Madagascar"},
-                    {"label": "Togo", "value": "Togo"},
-                    {"label": "Algérie", "value": "Algérie"},
-                    {"label": "Burkina Faso", "value": "BurkinaFaso"},
-                    {"label": "Italie", "value": "Italie"},
-                    {"label": "Corée", "value": "Corée"},
-                    {"label": "Vietnam", "value": "Vietnam"},
-                    {"label": "Tchétchénie", "value": "Tchétchénie"},
-                    {"label": "Maurice", "value": "Maurice"},
-                    {"label": "Chine", "value": "Chine"},
-                    {"label": "Liban", "value": "Liban"},
-                    {"label": "Maroc", "value": "Maroc"},
-                ],
-                value="France"
-            ),
+            html.Div(className="remainingTimeContainer", children=[
+                html.P("Remaining before the end of humanity in", className="remainingTime"),
+                dcc.Dropdown(
+                    id="country",
+                    options=[
+                        {"label": "France", "value": "France"},
+                        {"label": "Madagascar", "value": "Madagascar"},
+                        {"label": "Togo", "value": "Togo"},
+                        {"label": "Algérie", "value": "Algérie"},
+                        {"label": "Burkina Faso", "value": "BurkinaFaso"},
+                        {"label": "Italie", "value": "Italie"},
+                        {"label": "Corée", "value": "Corée"},
+                        {"label": "Vietnam", "value": "Vietnam"},
+                        {"label": "Tchétchénie", "value": "Tchétchénie"},
+                        {"label": "Maurice", "value": "Maurice"},
+                        {"label": "Chine", "value": "Chine"},
+                        {"label": "Liban", "value": "Liban"},
+                    ],
+                    value="France",
+                    className="countryDropdown"
+                ),
+            ]),
             html.Div(className="counter", children=[
                 
                 html.Div(className="countDiv", children=[
@@ -102,40 +103,36 @@ app.layout = html.Div([
                 {"label": "Biodiversity and alimentary security", "value": "biodiversity"},
                 {"label": "Plastic pollution", "value": "plastic"},
             ],
-            value="health"
-        )
+            value="health",
+            className="mapsDropdown"
+        ),
+        html.Div(className="mapDiv", children=[
+            # MET LA MAP ICI 
+        ])
     ]),
 
-    # Section Important Facts
-
-    
-
-
-    html.Div(className="fact", children=[html.H3("CLIMATE CHANGING EFFECTS")]),
-
-
-    
+    html.Div(className="factTitle", children=[html.H3("EFFECTS")]),
 
     html.Section(className="importantFacts", children=[
         html.Div(className="fact", children=[
-            html.H3("MORTS PREMATURES"),
+            html.H3("PREMATURED DEATHS"),
             html.P("79 884 002"),
             html.P("People")
             ]),
         html.Div(className="fact", children=[
-            html.H3("PLOMB DANS LE CERVEAU"),
+            html.H3("LEAD IN THE BRAIN"),
             html.P("800"),
-            html.P("Millions d'enfants")
+            html.P("Millions of childrens")
             ]),
         html.Div(className="fact", children=[
-            html.H3("PLASTIQUE DANS LE CORPS HUMAIN"),
+            html.H3("PLASTIC IN THE HUMAN BODY"),
             html.P("121 000"),
-            html.P("Particules de microplastique")
+            html.P("Microplastic particles in the average human body")
             ]),
         html.Div(className="fact", children=[
-            html.H3("REDUCTION DE L'ESPERANCE DE VIE"),
+            html.H3("LIFE EXPECTANCY DECREASE"),
             html.P("-6"),
-            html.P("ans")
+            html.P("Years")
             ]),
 
     ]),
@@ -151,22 +148,11 @@ app.layout = html.Div([
         html.Div(className="graph"),
     ]),
 
-    # Section Why
-    html.Section(className="why", children=[
-        html.P("WHY ?"),
-        html.H2("C'EST DE LEUR FAUTE"),
-    ]),
-
-    # Section Why Graphs
-    html.Section(className="whyGraphs", children=[
-        html.Div(className="graph"),
-        html.Div(className="graph"),
-        html.Div(className="graph"),
-    ]),
 
     # Section Main Actors
     html.Section(className="mainActors", children=[
-        html.Div(className="country", style={"background": "linear-gradient(to right, #c41313 32.9%, #2E2E2E 100%)"}, children=[
+    html.H2("THEIR FAULT"),
+    html.Div(className="country", style={"background": "linear-gradient(to right, #c41313 32.9%, #2E2E2E 100%)"}, children=[
         html.P("32.9%"),
         html.P("CHINA", className="countryName")
     ]),
@@ -221,13 +207,14 @@ app.layout = html.Div([
         html.H3("Give us your idea to avoid humanity extinction"),
         html.Form(children=[
             dcc.Input(type="text", placeholder="Email"),
-            html.Textarea(placeholder="Give us your idea", id="idea")
+            html.Textarea(placeholder="Give us your idea", id="idea"),
+            html.Button("Send", type="submit", id="submit-button")  
         ])
     ]),
 
     # Footer
     html.Footer(children=[
-        html.P("©... Copyrights 2025")
+        html.P("© Copyrights 2025")
     ])
 ])
 
