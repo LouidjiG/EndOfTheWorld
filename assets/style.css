@@ -256,7 +256,7 @@ h1 {
 }
 
 .importantFacts {
-    padding-bottom: 100px;
+    padding-bottom: 50px;
 }
 
 .idea form {
@@ -302,4 +302,24 @@ footer p  {
     color: white;
     padding: 30px;
 
+}
+
+.factsGraphs {
+    display: flex;
+    justify-content: space-around;
+    padding: 40px;
+    background-color: white;
+    flex-wrap: wrap;
+}
+
+.factsGraphs h3 {
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+.factsGraphs .graph {
+    width: 22%;
+    height: 200px;
+    min-width: 200px;
+    background-color: #2E2E2E;
 }
