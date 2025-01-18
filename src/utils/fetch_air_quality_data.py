@@ -24,10 +24,10 @@ def save_WAQI_air_quality_data():
                 response_data = response.json()['data']
                 all_data[country_code] = response_data
             else:
-                print("Failed to fetch data")
+                print(f"Failed to fetch data")
                 return None
-        except requests.RequestException:
-            print("An error occurred")
+        except requests.RequestException as e:
+            print(f"An error occurred")
             return None
     
     filename = 'air_quality_data_all_countries.json'
@@ -109,7 +109,7 @@ def visualize_air_quality(list_of_countries):
     fig.update_layout(
         margin=dict(t=50, l=0, r=0, b=0),
         title_x=0.5,
-        title_y=0.98,
+        title_y=0.984,
         legend=dict(
             yanchor="top",
             y=0.99,
