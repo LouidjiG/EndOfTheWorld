@@ -93,4 +93,85 @@ list of country:
 - Maurice
 - Chine
 - Liban
-- Marocain
+
+## The Developer Guide
+
+- **Architecture du projet**
+
+Nous avons respecté l'architecture demandé dans le cahier des charges du projet :
+
+EndOfTheWorld/
+│
+├── main.py                  # Main application file (entry point)
+├── README.md                # Project overview and documentation
+├── requirements.txt         # Python dependencies
+│
+├── assets/                  # Static assets and style resources
+│   ├── style.css            # CSS file for styling the page
+│   └── images/              # Folder containing country-specific background images
+│       ├── France.jpg
+│       ├── Japan.jpg
+│       └── USA.jpg
+│
+├── data/raw/                # Raw data files in JSON format
+│   ├── air_quality_data_all_countries.json
+│   ├── death_by_disease_data.json
+│   ├── eq_data_2021_01_01_2021-01-10_1_10.json
+│   ├── health_personnel_data.json
+│   ├── HIV_related_death_data.json
+│   ├── lifespan_data.json
+│   ├── natural_disaster_data_100.json
+│   └── population_number.json
+│
+├── src/utils/               # Utilities for data fetching and calculations
+│   ├── __init__.py
+│   ├── calculate_doomsday_year.py
+│   ├── fetch_air_quality_data.py
+│   ├── fetch_earthquake_data.py
+│   ├── fetch_health_related_data.py
+│   ├── fetch_lifespan_data.py
+│   └── fetch_natural_disaster_data.py
+
+
+## Analysis Report
+
+This project aims to analyze data to predict a potential "end of humanity" by identifying impactful events across various domains such as:
+
+- Air quality
+- Natural disasters
+- Life expectancy
+- And much more...
+
+In the face of challenges posed by climate change, natural disasters, and other global issues, we must understand how these factors interact to assess their potential impact on humanity's future. We have collected and analyzed data from reliable sources, applied to predictions, to draw meaningful conclusions.
+
+- **Air Quality**
+
+Pollution levels highly increase, posing significant threats to both the environment and human health.
+
+- **Seismic Activity**
+
+We are seeing a growing number of significant earthquakes in certain regions over recent years compared to previous decades.
+
+- **Public Health & Life Expectancy**
+
+We can observe a decline in life expectancy in regions affected by conflicts or pandemics.
+
+Certain contagious diseases, such as HIV, are spreading significantly in less developed countries.
+
+- **Natural Disasters**
+
+There is also an increase in the frequency of extreme weather events, such as hurricanes, floods, and more.
+
+- **And What's the Conclusion?**
+
+Current trends show that air quality and natural disasters are the most critical factors. CO2 levels are continuously rising, and we must find solutions to address this issue of air pollution.
+
+We also need to strengthen infrastructures to withstand extreme weather events and work collectively to slow down the trends that are leading humanity toward a decline.
+
+## Copyright 
+
+We hereby declare, on our honor, that **the entirety of the code provided was crafted by us**, the result of relentless effort and extensive research into every available functionality. 
+
+... Except for this message and the architecture below, of course – because, let’s face it, we couldn’t resist getting a little help to make this declaration as polished as possible. 😏
+
+
