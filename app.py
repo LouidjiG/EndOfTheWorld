@@ -1,13 +1,9 @@
 import dash
 from dash import dcc, html
-from dash.dependencies import Input, Output, State
+from dash.dependencies import Input, Output
 import datetime
 from src.utils.calculate_doomsday_year import calculate_doomsday_year
 from src.utils.fetch_air_quality_data import visualize_air_quality
-from src.utils.fetch_natural_disaster_data import visualize_natural_disaster_data
-from src.utils.fetch_earthquake_data import visualize_earthquake_data
-from src.utils.fetch_health_related_data import visualize_death_desease_data, visualize_health_personnel_data, visualize_hiv_data
-from src.utils.fetch_lifespan_data import visualize_lifespan_data_by_year
 
 doomsday_country_cache = {}
 
@@ -100,7 +96,6 @@ app.layout = html.Div([
         
     ]),    
 
-    # Section Map
     html.Section(className="map", children=[
         dcc.Dropdown(
             id="filter",
@@ -145,7 +140,6 @@ app.layout = html.Div([
             ]),
 
     ]),
-    # Section Facts Graphs
     html.Section(className="factsGraphs", children=[
         html.H3("IMPORTANT DETAILS"),
         html.Div(className="graph", children=[
@@ -166,8 +160,6 @@ app.layout = html.Div([
         ]),    
     ]),
 
-
-    # Section Main Actors
     html.Section(className="mainActors", children=[
     html.H2("THEIR FAULT"),
     html.Div(className="country", style={"background": "linear-gradient(to right, #c41313 32.9%, #2E2E2E 100%)"}, children=[
@@ -212,7 +204,6 @@ app.layout = html.Div([
     ])
     ]),
 
-    # Section How to Stop
     html.Section(className="howToStop", children=[
         html.Div(className="action"),
         html.Div(className="action"),
@@ -220,7 +211,6 @@ app.layout = html.Div([
         html.Div(className="action"),
     ]),
 
-    # Section Idea
     html.Section(className="idea", children=[
         html.H3("Give us your idea to avoid humanity extinction"),
         html.Form(children=[
@@ -230,7 +220,6 @@ app.layout = html.Div([
         ])
     ]),
 
-    # Footer
     html.Footer(children=[
         html.P("© Copyrights 2025")
     ])
@@ -292,22 +281,18 @@ def update_counter(n_intervals, selected_country):
     return years_left, months_left, days_left, hours_left, minutes_left, seconds_left
     
 @app.callback(
-    Output("heroSection", "style"),  # Met à jour le style de la section Hero
-    Input("country", "value")       # Surveille les changements dans le Dropdown
+    Output("heroSection", "style"),
+    Input("country", "value") 
 )
 def update_background_image(selected_country):
-    # Chemin de l'image basé sur le pays sélectionné
     image_path = f"/assets/images/{selected_country}.jpg"
-    # Retourne un style CSS pour définir l'image en fond
     return {
         "backgroundImage": f"url({image_path})",
         "backgroundSize": "cover",
         "backgroundPosition": "center",
-        "height": "100vh",  # Ajuste la hauteur pour couvrir l'écran
+        "height": "100vh", 
         "width": "100%"
     }
 
-
-# Lancer l'application
 if __name__ == '__main__':
     app.run_server(debug=True)

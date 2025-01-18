@@ -2,7 +2,6 @@ import os
 import json
 import pandas as pd
 import requests
-from datetime import datetime
 import plotly.express as px
 
 DATA_DIR = os.path.join(os.path.dirname(__file__), '..', '..', 'data')

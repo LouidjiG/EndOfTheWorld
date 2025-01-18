@@ -18,8 +18,8 @@ def save_HIV_related_death_data():
     Returns:
         json: HIV-related death data in json format
     """
-    url = f"https://ghoapi.azureedge.net/api/HIV_0000000006"
-    filename = f"HIV_related_death_data.json"
+    url = "https://ghoapi.azureedge.net/api/HIV_0000000006"
+    filename = "HIV_related_death_data.json"
 
     try:
         response = requests.get(url)
@@ -41,8 +41,8 @@ def save_health_personnel_data():
     Returns:
         json: health personnel data in json format
     """
-    url = f"https://ghoapi.azureedge.net/api/HWF_0003"
-    filename = f"health_personnel_data.json"
+    url = "https://ghoapi.azureedge.net/api/HWF_0003"
+    filename = "health_personnel_data.json"
     
     try:
         response = requests.get(url)
@@ -65,8 +65,8 @@ def save_death_by_disease_data():
     Returns:
         json: death by disease data in json format
     """
-    url = f"https://ghoapi.azureedge.net/api/NCDMORT3070"
-    filename= f"death_by_disease_data.json"
+    url = "https://ghoapi.azureedge.net/api/NCDMORT3070"
+    filename= "death_by_disease_data.json"
 
     try:
         response = requests.get(url)
@@ -102,7 +102,7 @@ def fetch_HIV_related_death_data(country, year=None):
     Returns:
         _type_: _description_
     """
-    filename = f'HIV_related_death_data.json'
+    filename = 'HIV_related_death_data.json'
     filepath = os.path.join(RAW_DATA_DIR, filename)
 
     relevent_columns = ['SpatialDim', 'TimeDim', 'NumericValue']
@@ -138,7 +138,7 @@ def fetch_health_personnel_data(country, year=None):
     Returns:
         dataframe: panda dataframe with the following columns: SpatialDim, TimeDim, NumericValue
     """
-    filename = f'health_personnel_data.json'
+    filename = 'health_personnel_data.json'
     filepath = os.path.join(RAW_DATA_DIR, filename)
 
     relevent_columns = ['SpatialDim', 'TimeDim', 'NumericValue']
@@ -177,7 +177,7 @@ def fetch_death_by_disease_data(country, year=None):
     Returns:
         dataframe: panda dataframe with the following columns: SpatialDim, TimeDim, NumericValue
     """
-    filename = f'death_by_disease_data.json'
+    filename = 'death_by_disease_data.json'
     filepath = os.path.join(RAW_DATA_DIR, filename)
 
     relevent_columns = ['SpatialDim', 'TimeDim', 'NumericValue']

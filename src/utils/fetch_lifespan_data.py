@@ -23,8 +23,8 @@ def save_lifespan_data():
             Dim1 (string): Sex indicator
             NumericValue (float): health indicator value as a float
     """    
-    url = f"https://ghoapi.azureedge.net/api/WHOSIS_000001"
-    filename = f'lifespan_data.json'
+    url = "https://ghoapi.azureedge.net/api/WHOSIS_000001"
+    filename = 'lifespan_data.json'
 
     try:
         response = requests.get(url)
@@ -34,10 +34,10 @@ def save_lifespan_data():
                 json.dump(response, f)
             return response
         else:
-            print(f'Error fetching data')
+            print('Error fetching data')
             return None
     except:
-        print(f'Error fetching data')
+        print('Error fetching data')
         return None
     
 def load_lifespan_data():
@@ -56,7 +56,7 @@ def fetch_lifespan_data(country, year=None):
         dataframe: panda dataframe with the following columns: TimeDim, Dim1, Value, NumericValue, Low, High
             TimeDim (string): year
     """
-    filename = f'lifespan_data.json'
+    filename = 'lifespan_data.json'
     filepath = os.path.join(RAW_DATA_DIR, filename)
 
     relevent_columns = ['SpatialDim', 'TimeDim', 'NumericValue']
