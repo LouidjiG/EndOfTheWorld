@@ -11,11 +11,11 @@ cached_data = {}
 os.makedirs(DATA_DIR, exist_ok=True)
 os.makedirs(RAW_DATA_DIR, exist_ok=True)
 
-def get_cache_filename(starttime, endtime, minmagnitude, maxmagnitude):
+def get_cache_filename(starttime, endtime, minmagnitude, maxmagnitude)->str:
     """Generate a unique filename for caching"""
     return f"eq_data_{starttime}_{endtime}_{minmagnitude}_{maxmagnitude}.json"
 
-def fetch_earthquake_data(starttime, endtime, minmagnitude=0, maxmagnitude=10):
+def fetch_earthquake_data(starttime, endtime, minmagnitude=0, maxmagnitude=10)->json:
     """Fetches earthquake data from the USGS API and saves to JSON"""
     url = "https://earthquake.usgs.gov/fdsnws/event/1/query"
     params = {
@@ -45,7 +45,7 @@ def fetch_earthquake_data(starttime, endtime, minmagnitude=0, maxmagnitude=10):
     
     return data
 
-def load_cached_data(starttime, endtime, minmagnitude=0, maxmagnitude=10):
+def load_cached_data(starttime, endtime, minmagnitude=0, maxmagnitude=10)->json:
     """Load data from cache or fetch if not exists"""
     filename = get_cache_filename(starttime, endtime, minmagnitude, maxmagnitude)
     filepath = os.path.join(DATA_DIR, filename)
@@ -55,7 +55,7 @@ def load_cached_data(starttime, endtime, minmagnitude=0, maxmagnitude=10):
             return json.load(f)
     return fetch_earthquake_data(starttime, endtime, minmagnitude, maxmagnitude)
 
-def process_earthquake_data(data):
+def process_earthquake_data(data)->pd.DataFrame:
     """Processes earthquake data"""
     earthquakes = []
     for feature in data['features']:
@@ -72,7 +72,7 @@ def process_earthquake_data(data):
         })
     return pd.DataFrame(earthquakes)
 
-def get_earthquake_data(starttime, endtime, minmagnitude=0, maxmagnitude=10):
+def get_earthquake_data(starttime, endtime, minmagnitude=0, maxmagnitude=10)->pd.DataFrame:
     """Fetches and processes earthquake data"""
     cache_key = f"{starttime}_{endtime}_{minmagnitude}_{maxmagnitude}"
     
@@ -84,7 +84,7 @@ def get_earthquake_data(starttime, endtime, minmagnitude=0, maxmagnitude=10):
     
     return cached_data[cache_key]
 
-def visualize_earthquake_data():
+def visualize_earthquake_data()->px.scatter_mapbox:
     """Visualizes earthquake data on a map using Plotly
 
     Args:

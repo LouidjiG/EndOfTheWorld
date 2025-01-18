@@ -40,13 +40,13 @@ def save_lifespan_data():
         print('Error fetching data')
         return None
     
-def load_lifespan_data():
+def load_lifespan_data()->None:
     global LIFESPAN
     LIFESPAN = save_lifespan_data()
 
 load_lifespan_data()
     
-def fetch_lifespan_data(country, year=None):
+def fetch_lifespan_data(country, year=None)->pd.DataFrame:
     """Fetches Lifespan data for a given country
 
     Args:
@@ -74,7 +74,7 @@ def fetch_lifespan_data(country, year=None):
         df = df[(df['SpatialDim'] == country)]
         return df
 
-def get_lastest_lifespan_data(country):
+def get_lastest_lifespan_data(country)->pd.DataFrame:
     """Fetches and processes lifespan data
 
     Args:
@@ -87,7 +87,7 @@ def get_lastest_lifespan_data(country):
     data = fetch_lifespan_data(country)
     return data[data['TimeDim'] == data['TimeDim'].max()]
 
-def visualize_lastest_lifespan_data(countries):
+def visualize_lastest_lifespan_data(countries)->px.bar:
     """Displays global health data for a given country
 
     Args:
@@ -104,7 +104,7 @@ def visualize_lastest_lifespan_data(countries):
                 title='Latest Global lifespan Data by Country and Sex')
     return fig
 
-def visualize_lifespan_data_by_year(countries, year):
+def visualize_lifespan_data_by_year(countries, year)->px.bar:
     """Displays global health data for a given country and year
 
     Args:

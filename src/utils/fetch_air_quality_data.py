@@ -11,7 +11,7 @@ DATA_DIR = os.path.join(os.path.dirname(__file__), '..', '..', 'data')
 RAW_DATA_DIR = os.path.join(DATA_DIR, 'raw')
 
 
-def save_WAQI_air_quality_data():
+def save_WAQI_air_quality_data()->dict:
     """Fetches air quality data for all countries and saves it to a JSON file."""
     all_data = {}
     token = '21abc0384d5f519b7a35d9c75293845ddb4e8a23'
@@ -43,7 +43,7 @@ def load_initial_data():
 
 load_initial_data()
 
-def get_WAQI_air_quality_data(country):
+def get_WAQI_air_quality_data(country)->pd.DataFrame:
     """Fetches air quality data for a given country. If no data is found, returns default values.
     aqi = 45, dominentpol = "unknown"
 
@@ -79,7 +79,7 @@ def get_WAQI_air_quality_data(country):
 
 
 
-def visualize_air_quality(list_of_countries):
+def visualize_air_quality(list_of_countries)->px.bar:
     """Visualizes air quality data on a map using Plotly
 
     Args:

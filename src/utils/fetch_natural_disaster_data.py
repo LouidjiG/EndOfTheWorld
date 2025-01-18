@@ -16,7 +16,7 @@ def fetch_natural_disaster_data(limit=100):
     events = client.latest_events(limit=limit)
     return events
 
-def process_natural_disaster_data(events):
+def process_natural_disaster_data(events)->pd.DataFrame:
     """Processes natural disaster data
     Note: in the rturned dataframe, the event_type column contains the type of the event 
     (e.g. EQ=earthquake, TC=tropical cyclone, FL=flood, VO=volcano, WF=wild fire, DR=drought, 
@@ -47,7 +47,7 @@ def process_natural_disaster_data(events):
         })
     return pd.DataFrame(relevant_data)
 
-def get_natural_disaster_data(limit=100):
+def get_natural_disaster_data(limit=100)->pd.DataFrame:
     """Fetches and processes natural disaster data
 
     Returns:
@@ -65,12 +65,12 @@ def get_natural_disaster_data(limit=100):
         save_natural_disaster_data(df, f'natural_disaster_data_{limit}.json')
     return df
 
-def save_natural_disaster_data(df, filename):
+def save_natural_disaster_data(df, filename)->None:
     """Saves natural disaster data to a json file"""
     filepath = os.path.join(RAW_DATA_DIR, filename)
     df.to_json(filepath, orient='records', lines=True)
 
-def visualize_natural_disaster_data():
+def visualize_natural_disaster_data()->px.scatter_mapbox:
     """Visualizes natural disaster data on a map using Plotly
 
     Args:
@@ -97,7 +97,7 @@ def visualize_natural_disaster_data():
     fig.update_layout(margin={"r":0,"t":50,"l":0,"b":0})
     return fig
 
-def get_natural_disaster_occurence(country, limit=100):
+def get_natural_disaster_occurence(country, limit=100)->int:
     """Get the number of natural disasters that occured in a country for the past N events
 
     Args:

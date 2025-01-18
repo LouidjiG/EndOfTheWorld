@@ -9,3 +9,6 @@ retry-requests>=1.0.0
 gdacs.api>=0.1.0
 plotly>=5.3.1
 geojson>=2.5.0
+radon>=5.0.1
+ruff>=0.1.0
+mypy>=0.910

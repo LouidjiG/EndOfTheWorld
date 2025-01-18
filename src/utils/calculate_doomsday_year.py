@@ -9,7 +9,7 @@ from .fetch_natural_disaster_data import get_natural_disaster_occurence
 
 from datetime import datetime
 
-def calculate_doomsday_year(country):
+def calculate_doomsday_year(country)->int:
     """Calculates the doomsday year for a given country
 
     Args:
@@ -72,7 +72,7 @@ def calculate_doomsday_year(country):
     doomsday_year = int((1-overall_score) * Drakes_equation_value)
     return doomsday_year 
 
-def calculate_time_left(doomsday_year):
+def calculate_time_left(doomsday_year)->dict:
     """Calculates the time left until the doomsday year
 
     Args:

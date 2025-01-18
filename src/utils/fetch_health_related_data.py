@@ -8,7 +8,7 @@ import json
 DATA_DIR = os.path.join(os.path.dirname(__file__), '..', '..', 'data')
 RAW_DATA_DIR = os.path.join(DATA_DIR, 'raw')
 # ------------------------------------------Load data------------------------------------------
-def save_HIV_related_death_data():
+def save_HIV_related_death_data()->json:
     """Number of people dying from HIV-related causes
 
     Args:
@@ -35,7 +35,7 @@ def save_HIV_related_death_data():
         print(f"An error occurred: {e}")
         return None
     
-def save_health_personnel_data():
+def save_health_personnel_data()->json:
     """Generalist medical practitioners (number). Save the data in a json file in data\\raw folder
 
     Returns:
@@ -58,7 +58,7 @@ def save_health_personnel_data():
         print(f"An error occurred: {e}")
         return None
 
-def save_death_by_disease_data():
+def save_death_by_disease_data()->json:
     """Save datas in JSON format about: Probability (%) of dying between age 30 and exact age 70 
     from any of cardiovascular disease, cancer, diabetes, or chronic respiratory disease"
 
@@ -82,7 +82,7 @@ def save_death_by_disease_data():
         print(f"An error occurred: {e}")
         return None
 
-def load_initial_data():
+def load_initial_data()->None:
     global DEATH_BY_DISEASE_DATA, HEALTH_PERSONNEL_DATA, HIV_DATA
     DEATH_BY_DISEASE_DATA = save_death_by_disease_data()
     HEALTH_PERSONNEL_DATA = save_health_personnel_data()
@@ -92,7 +92,7 @@ load_initial_data()
 # ------------------------------------------Load data------------------------------------------
 
 # ------------------------------------------Fetch data------------------------------------------
-def fetch_HIV_related_death_data(country, year=None):
+def fetch_HIV_related_death_data(country, year=None)->pd.DataFrame:
     """Fetch HIV-related death data for a country
 
     Args:
@@ -120,7 +120,7 @@ def fetch_HIV_related_death_data(country, year=None):
         df = df[(df['SpatialDim'] == country)]
         return df
         
-def fetch_health_personnel_data(country, year=None):
+def fetch_health_personnel_data(country, year=None)->pd.DataFrame:
     """Fetch health personnel data for a country. If there is no data for the health personnel in the country,
     We estimate the number of health personnel needed based on the number of death by a disease in the country.
     Here are the details of the estimation:
@@ -166,7 +166,7 @@ def fetch_health_personnel_data(country, year=None):
             df = df[(df['SpatialDim'] == country)]
         return df
     
-def fetch_death_by_disease_data(country, year=None):
+def fetch_death_by_disease_data(country, year=None)->pd.DataFrame:
     """Fetch probability (%) of dying between age 30 and exact age 70 
     from any of cardiovascular disease, cancer, diabetes, or chronic respiratory disease for a country.
 
@@ -198,7 +198,7 @@ def fetch_death_by_disease_data(country, year=None):
 # ------------------------------------------Fetch data------------------------------------------
     
 # ---------------------------------------Visualize data-----------------------------------------
-def visualize_hiv_data(countries=None):
+def visualize_hiv_data(countries=None)->px.bar:
     """Visualizes HIV-related deaths by country
 
     Args:
@@ -252,7 +252,7 @@ def visualize_hiv_data(countries=None):
         return None
     
     
-def visualize_death_desease_data(countries=None):
+def visualize_death_desease_data(countries=None)->px.bar:
     """Visualizes death by deseases by country
 
     Args:
@@ -305,7 +305,7 @@ def visualize_death_desease_data(countries=None):
         print(f"Error creating visualization: {e}")
         return None
     
-def visualize_health_personnel_data(countries=None):
+def visualize_health_personnel_data(countries=None)->px.bar:
     """Visualizes health personnel by country
 
     Args:
@@ -360,7 +360,7 @@ def visualize_health_personnel_data(countries=None):
 # ---------------------------------------Visualize data-----------------------------------------
 
 # ---------------------------------------Population data----------------------------------------
-def get_population(country):
+def get_population(country)->pd.DataFrame:
     """Get the population for a given country
 
     Args:
@@ -382,7 +382,7 @@ def get_population(country):
     df = pd.DataFrame({'country': [country], 'population': [population]})
     return df
 
-def get_critical_medical_population(country):  
+def get_critical_medical_population(country)->int:  
     """Get the critical number of medical personnel needed for a country
 
     Args:
