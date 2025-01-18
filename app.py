@@ -8,6 +8,7 @@ from src.utils.fetch_natural_disaster_data import visualize_natural_disaster_dat
 from src.utils.fetch_earthquake_data import visualize_earthquake_data
 from src.utils.fetch_health_related_data import visualize_death_desease_data, visualize_health_personnel_data, visualize_hiv_data
 from src.utils.fetch_lifespan_data import visualize_lifespan_data_by_year, visualize_lastest_lifespan_data
+from dash.exceptions import PreventUpdate
 
 doomsday_country_cache = {}
 
@@ -140,7 +141,11 @@ app.layout = html.Div([
                 className="map-btn"
             ),
         ]),
-        html.Div(id="map-container", className="map-visualization")
+        dcc.Loading(
+            id="loading-1",
+            type="circle",
+            children=html.Div(id="map-container", className="map-visualization")
+        )
     ]),
 
     html.Div(className="factTitle", children=[html.H3("EFFECTS")]),
@@ -252,6 +257,7 @@ app.layout = html.Div([
         html.P("© Copyrights 2025")
     ])
 ])
+# Update callback with error handling
 @app.callback(
     Output("map-container", "children"),
     [Input("air_quality-btn", "n_clicks"),
@@ -264,22 +270,24 @@ app.layout = html.Div([
 def update_map(*args):
     ctx = dash.callback_context
     if not ctx.triggered:
-        return dcc.Graph(figure=visualize_air_quality(country.values()))
+        raise PreventUpdate
     
-    button_id = ctx.triggered[0]["prop_id"].split(".")[0]
-    
-    if button_id == "air_quality-btn":
-        return dcc.Graph(figure=visualize_air_quality(country.values()))
-    elif button_id == "earthquake-btn":
-        return dcc.Graph(figure=visualize_earthquake_data())
-    elif button_id == "health_personnel-btn":
-        return dcc.Graph(figure=visualize_health_personnel_data())
-    elif button_id == "HIV-btn":
-        return dcc.Graph(figure=visualize_hiv_data())
-    elif button_id == "death_by_disease-btn":
-        return dcc.Graph(figure=visualize_death_desease_data())
-    elif button_id == "natural_disasters-btn":
-        return dcc.Graph(figure=visualize_natural_disaster_data())
+    try:
+        button_id = ctx.triggered[0]["prop_id"].split(".")[0]
+        if button_id == "air_quality-btn":
+            return dcc.Graph(figure=visualize_air_quality(country.values()))
+        elif button_id == "earthquake-btn":
+            return dcc.Graph(figure=visualize_earthquake_data())
+        elif button_id == "health_personnel-btn":
+            return dcc.Graph(figure=visualize_health_personnel_data())
+        elif button_id == "HIV-btn":
+            return dcc.Graph(figure=visualize_hiv_data())
+        elif button_id == "death_by_disease-btn":
+            return dcc.Graph(figure=visualize_death_desease_data())
+        elif button_id == "natural_disasters-btn":
+            return dcc.Graph(figure=visualize_natural_disaster_data())
+    except Exception as e:
+        return html.Div(f"Error loading data: {str(e)}", className="error-message")
 
 
 @app.callback(

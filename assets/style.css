@@ -8,6 +8,27 @@ body {
     font-family: 'Lato';
 }
 
+.map-visualization {
+    width: 100%;
+    height: 500px;
+    border-radius: 10px;
+    position: relative;
+}
+
+/* Dash loading animation override */
+._dash-loading-callback {
+    font-family: sans-serif;
+    padding-top: 50px;
+    color: rgb(90, 90, 90);
+}
+
+._dash-loading-callback::after {
+    content: 'Loading data...';
+    display: block;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
 .button-container {
     display: flex;
     flex-direction: column;
