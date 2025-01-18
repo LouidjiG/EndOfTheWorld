@@ -3,6 +3,11 @@ from dash import dcc, html
 from dash.dependencies import Input, Output, State
 import datetime
 from src.utils.calculate_doomsday_year import calculate_doomsday_year
+from src.utils.fetch_air_quality_data import visualize_air_quality
+from src.utils.fetch_natural_disaster_data import visualize_natural_disaster_data
+from src.utils.fetch_earthquake_data import visualize_earthquake_data
+from src.utils.fetch_health_related_data import visualize_death_desease_data, visualize_health_personnel_data, visualize_hiv_data
+from src.utils.fetch_lifespan_data import visualize_lifespan_data_by_year
 
 doomsday_country_cache = {}
 
@@ -98,17 +103,18 @@ app.layout = html.Div([
         dcc.Dropdown(
             id="filter",
             options=[
-                {"label": "Effects on human health", "value": "health"},
-                {"label": "Pollution and climate changes", "value": "pollution"},
-                {"label": "Biodiversity and alimentary security", "value": "biodiversity"},
-                {"label": "Plastic pollution", "value": "plastic"},
+                {"label": "Air Quality", "value": "air_quality"},
+                {"label": "Earthquake", "value": "earthquake"},
+                {"label": "Number of health personnel by country", "value": "health_personnel"},
+                {"label": "lifespan by country", "value": "lifespan"},
+                {"label": "HIV death", "value": "HIV"},
+                {"label": "Proportion of death by disease", "value": "death_by_disease"},
             ],
             value="health",
             className="mapsDropdown"
         ),
-        html.Div(className="mapDiv", children=[
-            # MET LA MAP ICI 
-        ])
+        html.Div(id="map-container", className="mapDiv")
+
     ]),
 
     html.Div(className="factTitle", children=[html.H3("EFFECTS")]),
@@ -136,10 +142,6 @@ app.layout = html.Div([
             ]),
 
     ]),
-
-    
-    
-
     # Section Facts Graphs
     html.Section(className="factsGraphs", children=[
         html.Div(className="graph"),
@@ -217,6 +219,32 @@ app.layout = html.Div([
         html.P("© Copyrights 2025")
     ])
 ])
+@app.callback(
+    Output("map-container", "children"),
+    Input("filter", "value")
+)
+def update_map(selected_filter):
+    if selected_filter == "air_quality":
+        air_quality_fig = visualize_air_quality(country.values())
+        return dcc.Graph(figure=air_quality_fig)
+    elif selected_filter == "natural_disasters":
+        # natural_disasters_fig = visualize_natural_disaster_data()
+        return html.Div("")
+    elif selected_filter == "earthquake":
+        # HIV_fig = visualize_hiv_data()
+        return html.Div("")
+    elif selected_filter == "health_personnel":
+        # HIV_fig = visualize_hiv_data()
+        return html.Div("")
+    elif selected_filter == "HIV":
+        # HIV_fig = visualize_hiv_data()
+        return html.Div("")
+    elif selected_filter == "death_by_disease":
+        # health_personnel_fig = visualize_health_personnel_data()
+        return html.Div("")
+    else:
+        return html.Div("Select a filter to see the map")
+
 
 @app.callback(
     [

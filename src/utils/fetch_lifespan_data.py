@@ -104,7 +104,7 @@ def show_lastest_lifespan_data(countries):
                 title='Latest Global Health Data by Country and Sex')
     fig.show()
 
-def show_lifespan_data_by_year(countries, year):
+def visualize_lifespan_data_by_year(countries, year):
     """Displays global health data for a given country and year
 
     Args:
@@ -120,7 +120,7 @@ def show_lifespan_data_by_year(countries, year):
 
     fig = px.bar(all_data, x='country', y='NumericValue', color='Dim1', barmode='group',
                 title=f'Global Health Data by Country and Year {year}')
-    fig.show()
+    return fig
 
 # Example usage
 # show_lastest_lifespan_data(ISO3166_code)
