@@ -266,7 +266,7 @@ def update_counter(n_intervals, selected_country):
 )
 def update_background_image(selected_country):
     # Chemin de l'image basé sur le pays sélectionné
-    image_path = f"/static/Wallpapers/{selected_country}.jpg"
+    image_path = f"/assets/images/{selected_country}.jpg"
     # Retourne un style CSS pour définir l'image en fond
     return {
         "backgroundImage": f"url({image_path})",
