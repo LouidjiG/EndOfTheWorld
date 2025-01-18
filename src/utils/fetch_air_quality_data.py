@@ -24,10 +24,10 @@ def save_WAQI_air_quality_data():
                 response_data = response.json()['data']
                 all_data[country_code] = response_data
             else:
-                print(f"Failed to fetch data")
+                print("Failed to fetch data")
                 return None
-        except requests.RequestException as e:
-            print(f"An error occurred")
+        except requests.RequestException:
+            print("An error occurred")
             return None
     
     filename = 'air_quality_data_all_countries.json'

@@ -2,15 +2,12 @@ from .fetch_air_quality_data import get_WAQI_air_quality_data
 from .fetch_health_related_data import (
     fetch_health_personnel_data, 
     fetch_death_by_disease_data, 
-    fetch_HIV_related_death_data,
     get_critical_medical_population
 )
 from .fetch_lifespan_data import fetch_lifespan_data
 from .fetch_natural_disaster_data import get_natural_disaster_occurence
 
-import numpy as np
-import plotly.express as px
-from datetime import datetime, timedelta
+from datetime import datetime
 
 def calculate_doomsday_year(country):
     """Calculates the doomsday year for a given country
