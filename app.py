@@ -8,7 +8,7 @@ from src.utils.fetch_natural_disaster_data import visualize_natural_disaster_dat
 from src.utils.fetch_earthquake_data import visualize_earthquake_data
 from src.utils.fetch_health_related_data import visualize_death_desease_data, visualize_health_personnel_data, visualize_hiv_data
 from src.utils.fetch_lifespan_data import visualize_lifespan_data_by_year, visualize_lastest_lifespan_data
-from src.utils.GlobalLandTemperatures import visualize_global_land_temperatures
+from src.utils.GlobalLandTemperatures import visualize_global_land_temperatures, visualize_global_land_temperature_static
 from dash.exceptions import PreventUpdate
 
 doomsday_country_cache = {}
@@ -175,26 +175,17 @@ app.layout = html.Div([
 
     ]),
     html.Section(className="factsGraphs", children=[
-        html.H3("IMPORTANT DETAILS"),
+        html.H3("IMPORTANCE OF GLOBAL WARMING"),
         html.Div(className="graph", children=[
             dash.dcc.Graph(figure=visualize_global_land_temperatures())
         ]),
         html.Div(className="graph", children=[
-            # TODO
-            # VIH
-        ]),      
-        html.Div(className="graph", children=[
-            # TODO
-            # TREMBLEMENTS DE TERRE
-        ]),
-        html.Div(className="graph", children=[
-            # TODO
-            # DESASTRES NATURELS
-        ]),    
+            dash.dcc.Graph(figure=visualize_global_land_temperature_static())
+        ]),       
     ]),
 
     html.Section(className="mainActors", children=[
-    html.H2("THEIR FAULT"),
+    html.H2("CLIMATE CRISIS IS THEIR FAULT"),
     html.Div(className="country", style={"background": "linear-gradient(to right, #c41313 32.9%, #2E2E2E 100%)"}, children=[
         html.P("32.9%"),
         html.P("CHINA", className="countryName")

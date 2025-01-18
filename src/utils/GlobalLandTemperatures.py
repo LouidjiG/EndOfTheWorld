@@ -16,7 +16,6 @@ def get_global_land_temperatures():
 
 def process_global_land_temperatures(df):
     """Processes the GlobalLandTemperaturesByCountry data"""
-    countries = ["France", "Italy", "China", "Madagascar", "Russia", "Togo", "South Korea", "Vietnam", "Algeria", "Burkina Faso", "Mauritius", "Lebanon"]
     df = df[df['Country'].isin(countries)]
     
     df['dt'] = pd.to_datetime(df['dt'])
@@ -48,13 +47,21 @@ def load_global_land_temperatures():
 def visualize_global_land_temperatures():
     """Visualizes global land temperatures using Plotly"""
     df = load_global_land_temperatures()
-    fig = px.line(df, x='Year', y='AverageTemperature', color='Country')
+    fig = px.bar(df, x='Country', y='AverageTemperature', color='Country', animation_frame='Year', range_y=[df['AverageTemperature'].min(), df['AverageTemperature'].max()], height=500)
+    fig.update_layout(title='Average Temperature by Country Over Years', xaxis_title='Country', yaxis_title='Average Temperature')
     return fig
 
-# df = get_global_land_temperatures()
-# df = process_global_land_temperatures(df)
-# save_global_land_temperatures(df)
-# print("Global Land Temperatures data processed and saved")
-# print(load_global_land_temperatures())
-# fig = visualize_global_land_temperatures()
-# fig.show()
+def visualize_global_land_temperature_static():
+    """Visualizes global land temperatures using Plotly"""
+    df = load_global_land_temperatures()
+    fig = px.line(df, x='Year', y='AverageTemperature', color='Country', height=500)
+    fig.update_layout(title='Average Temperature by Country Over Years', xaxis_title='Year', yaxis_title='Average Temperature')
+    return fig
+
+# Example usage
+# if __name__ == "__main__":
+#     df = get_global_land_temperatures()
+#     processed_df = process_global_land_temperatures(df)
+#     save_global_land_temperatures(processed_df)
+#     fig = visualize_global_land_temperatures()
+#     fig.show()
