@@ -8,6 +8,7 @@ from src.utils.fetch_natural_disaster_data import visualize_natural_disaster_dat
 from src.utils.fetch_earthquake_data import visualize_earthquake_data
 from src.utils.fetch_health_related_data import visualize_death_desease_data, visualize_health_personnel_data, visualize_hiv_data
 from src.utils.fetch_lifespan_data import visualize_lifespan_data_by_year, visualize_lastest_lifespan_data
+from src.utils.GlobalLandTemperatures import visualize_global_land_temperatures
 from dash.exceptions import PreventUpdate
 
 doomsday_country_cache = {}
@@ -176,8 +177,7 @@ app.layout = html.Div([
     html.Section(className="factsGraphs", children=[
         html.H3("IMPORTANT DETAILS"),
         html.Div(className="graph", children=[
-            # TODO
-            # QUALITE DE L'AIR
+            dash.dcc.Graph(figure=visualize_global_land_temperatures())
         ]),
         html.Div(className="graph", children=[
             # TODO
