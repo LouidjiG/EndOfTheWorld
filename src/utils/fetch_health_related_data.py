@@ -233,12 +233,18 @@ def visualize_hiv_data(countries=None):
                     x='NumericValue',
                     y='SpatialDim',
                     orientation='h',
+                    height=500,
                     title='HIV-related Deaths by Country (Latest Year)',
                     labels={'NumericValue': 'Number of Deaths',
                            'SpatialDim': 'Country'},
                     hover_data=['TimeDim'])
         
-        fig.update_layout(showlegend=False)
+        fig.update_layout(
+            showlegend=False,
+            margin=dict(l=0, r=0, t=30, b=0),
+            title_x=0.5,
+            title_y=0.98
+            )
         return fig
         
     except Exception as e:
@@ -280,13 +286,19 @@ def visualize_death_desease_data(countries=None):
         fig = px.bar(final_df,
                     x='NumericValue',
                     y='SpatialDim',
+                    height=500,
                     orientation='h',
                     title='Probability (%) of dying between age 30 and exact age 70 from any of cardiovascular disease, cancer, diabetes, or chronic respiratory disease (lastest year)',
                     labels={'NumericValue': 'percentage (%) of deaths',
                            'SpatialDim': 'Country'},
                     hover_data=['TimeDim'])
         
-        fig.update_layout(showlegend=False)
+        fig.update_layout(
+            showlegend=False,
+            margin=dict(l=0, r=0, t=30, b=0),
+            title_x=0.5,
+            title_y=0.98
+            )
         return fig
         
     except Exception as e:
@@ -328,12 +340,18 @@ def visualize_health_personnel_data(countries=None):
                     x='NumericValue',
                     y='SpatialDim',
                     orientation='h',
+                    height=500,
                     title='number of health personnel by country (lastest year)',
                     labels={'NumericValue': 'percentage (%) of deaths',
                            'SpatialDim': 'Country'},
                     hover_data=['TimeDim'])
         
-        fig.update_layout(showlegend=False)
+        fig.update_layout(
+            showlegend=False,
+            margin=dict(l=0, r=0, t=30, b=0),
+            title_x=0.5,
+            title_y=0.98
+            )
         return fig
         
     except Exception as e:

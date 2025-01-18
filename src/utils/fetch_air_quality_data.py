@@ -96,9 +96,27 @@ def visualize_air_quality(list_of_countries):
             print(f'no data for {country}, please check the country name or ISO code')
     
     df = pd.concat(data)
-    fig = px.bar(df, x='country', y='aqi', color='dominentpol',
-                 title='Air Quality Index by Country', 
-                 labels={'aqi': 'Air Quality Index', 'country': 'Country'})
+    fig = px.bar(
+        df, 
+        x='country',
+        y='aqi', 
+        color='dominentpol',
+        height=500,
+        title='Air Quality Index by Country', 
+        labels={'aqi': 'Air Quality Index', 'country': 'Country'},
+        hover_data=['aqi', 'dominentpol']
+    )
+    fig.update_layout(
+        margin=dict(t=50, l=0, r=0, b=0),
+        title_x=0.5,
+        title_y=0.98,
+        legend=dict(
+            yanchor="top",
+            y=0.99,
+            xanchor="right",
+            x=0.99
+        )
+    )
     return fig
 
 

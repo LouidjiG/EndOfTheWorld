@@ -70,12 +70,15 @@ def save_natural_disaster_data(df, filename):
     filepath = os.path.join(RAW_DATA_DIR, filename)
     df.to_json(filepath, orient='records', lines=True)
 
-def visualize_natural_disaster_data(df):
+def visualize_natural_disaster_data():
     """Visualizes natural disaster data on a map using Plotly
 
     Args:
         df (pd.DataFrame): DataFrame containing natural disaster data
     """
+    df = get_natural_disaster_data()
+    date_range = f"Data from {df['fromdate'].min()} to {df['todate'].max()}"
+
     fig = px.scatter_mapbox(
         df,
         lat="latitude",
@@ -86,12 +89,13 @@ def visualize_natural_disaster_data(df):
         size='severity',
         size_max=20,
         zoom=1,
-        height=600
+        height=500,
+        title=f"Natural Disaster Events<br><sup>{date_range}</sup>"
     )
-    fig.update_traces(marker_sizemin=5)
+    fig.update_traces(marker_sizemin=8)
     fig.update_layout(mapbox_style="open-street-map")
-    fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
-    fig.show()
+    fig.update_layout(margin={"r":0,"t":50,"l":0,"b":0})
+    return fig
 
 def get_natural_disaster_occurence(country, limit=100):
     """Get the number of natural disasters that occured in a country for the past N events

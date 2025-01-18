@@ -7,7 +7,7 @@ from src.utils.fetch_air_quality_data import visualize_air_quality
 from src.utils.fetch_natural_disaster_data import visualize_natural_disaster_data
 from src.utils.fetch_earthquake_data import visualize_earthquake_data
 from src.utils.fetch_health_related_data import visualize_death_desease_data, visualize_health_personnel_data, visualize_hiv_data
-from src.utils.fetch_lifespan_data import visualize_lifespan_data_by_year
+from src.utils.fetch_lifespan_data import visualize_lifespan_data_by_year, visualize_lastest_lifespan_data
 
 doomsday_country_cache = {}
 
@@ -40,7 +40,7 @@ app.layout = html.Div([
 
         html.Div(className="counterContainer", children=[
             html.Div(className="remainingTimeContainer", children=[
-                html.P("Remaining before the end of humanity in", className="remainingTime"),
+                html.P("Time remaining before the end of humanity in", className="remainingTime"),
                 dcc.Dropdown(
                     id="country",
                     options=[
@@ -101,23 +101,46 @@ app.layout = html.Div([
     ]),    
 
     # Section Map
-    html.Section(className="map", children=[
-        dcc.Dropdown(
-            id="filter",
-            options=[
-                {"label": "Air Quality", "value": "air_quality"},
-                {"label": "Earthquake", "value": "earthquake"},
-                {"label": "Number of health personnel by country", "value": "health_personnel"},
-                {"label": "lifespan by country", "value": "lifespan"},
-                {"label": "HIV death", "value": "HIV"},
-                {"label": "Proportion of death by disease", "value": "death_by_disease"},
-            ],
-            value="health",
-            className="mapsDropdown",
-            clearable=False
-        ),
-        html.Div(id="map-container", className="mapDiv")
-
+    html.Section(className="map-section", children=[
+        html.Div(className="map-menu", children=[
+            html.Button(
+                "Air Quality",
+                id="air_quality-btn",
+                n_clicks=0,
+                className="map-btn"
+            ),
+            html.Button(
+                "Earthquakes",
+                id="earthquake-btn",
+                n_clicks=0,
+                className="map-btn"
+            ),
+            html.Button(
+                "Health Personnel",
+                id="health_personnel-btn",
+                n_clicks=0,
+                className="map-btn"
+            ),
+            html.Button(
+                "HIV Deaths",
+                id="HIV-btn",
+                n_clicks=0,
+                className="map-btn"
+            ),
+            html.Button(
+                "Deaths by Disease",
+                id="death_by_disease-btn",
+                n_clicks=0,
+                className="map-btn"
+            ),
+            html.Button(
+                "Natural Disasters",
+                id="natural_disasters-btn",
+                n_clicks=0,
+                className="map-btn"
+            ),
+        ]),
+        html.Div(id="map-container", className="map-visualization")
     ]),
 
     html.Div(className="factTitle", children=[html.H3("EFFECTS")]),
@@ -237,29 +260,32 @@ app.layout = html.Div([
 ])
 @app.callback(
     Output("map-container", "children"),
-    Input("filter", "value")
+    [Input("air_quality-btn", "n_clicks"),
+     Input("earthquake-btn", "n_clicks"),
+     Input("health_personnel-btn", "n_clicks"),
+     Input("HIV-btn", "n_clicks"),
+     Input("death_by_disease-btn", "n_clicks"),
+     Input("natural_disasters-btn", "n_clicks")],
 )
-def update_map(selected_filter):
-    if selected_filter == "air_quality":
-        air_quality_fig = visualize_air_quality(country.values())
-        return dcc.Graph(figure=air_quality_fig)
-    elif selected_filter == "natural_disasters":
-        # natural_disasters_fig = visualize_natural_disaster_data()
-        return html.Div("")
-    elif selected_filter == "earthquake":
-        # HIV_fig = visualize_hiv_data()
-        return html.Div("")
-    elif selected_filter == "health_personnel":
-        # HIV_fig = visualize_hiv_data()
-        return html.Div("")
-    elif selected_filter == "HIV":
-        # HIV_fig = visualize_hiv_data()
-        return html.Div("")
-    elif selected_filter == "death_by_disease":
-        # health_personnel_fig = visualize_health_personnel_data()
-        return html.Div("")
-    else:
-        return html.Div("Select a filter to see the map")
+def update_map(*args):
+    ctx = dash.callback_context
+    if not ctx.triggered:
+        return dcc.Graph(figure=visualize_air_quality(country.values()))
+    
+    button_id = ctx.triggered[0]["prop_id"].split(".")[0]
+    
+    if button_id == "air_quality-btn":
+        return dcc.Graph(figure=visualize_air_quality(country.values()))
+    elif button_id == "earthquake-btn":
+        return dcc.Graph(figure=visualize_earthquake_data())
+    elif button_id == "health_personnel-btn":
+        return dcc.Graph(figure=visualize_health_personnel_data())
+    elif button_id == "HIV-btn":
+        return dcc.Graph(figure=visualize_hiv_data())
+    elif button_id == "death_by_disease-btn":
+        return dcc.Graph(figure=visualize_death_desease_data())
+    elif button_id == "natural_disasters-btn":
+        return dcc.Graph(figure=visualize_natural_disaster_data())
 
 
 @app.callback(
@@ -308,6 +334,5 @@ def update_background_image(selected_country):
     }
 
 
-# Lancer l'application
 if __name__ == '__main__':
     app.run_server(debug=True)

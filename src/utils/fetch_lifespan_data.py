@@ -87,7 +87,7 @@ def get_lastest_lifespan_data(country):
     data = fetch_lifespan_data(country)
     return data[data['TimeDim'] == data['TimeDim'].max()]
 
-def show_lastest_lifespan_data(countries):
+def visualize_lastest_lifespan_data(countries):
     """Displays global health data for a given country
 
     Args:
@@ -100,9 +100,9 @@ def show_lastest_lifespan_data(countries):
         all_data = pd.concat([all_data, latest_data])
 
     # Visualize the data using Plotly
-    fig = px.bar(all_data, x='country', y='NumericValue', color='Dim1', barmode='group',
-                title='Latest Global Health Data by Country and Sex')
-    fig.show()
+    fig = px.bar(all_data, x='country', y='NumericValue', barmode='group',
+                title='Latest Global lifespan Data by Country and Sex')
+    return fig
 
 def visualize_lifespan_data_by_year(countries, year):
     """Displays global health data for a given country and year
@@ -118,11 +118,12 @@ def visualize_lifespan_data_by_year(countries, year):
         data['country'] = country
         all_data = pd.concat([all_data, data])
 
-    fig = px.bar(all_data, x='country', y='NumericValue', color='Dim1', barmode='group',
+    fig = px.bar(all_data, x='country', y='NumericValue', barmode='group',
                 title=f'Global Health Data by Country and Year {year}')
     return fig
 
 # Example usage
-# show_lastest_lifespan_data(ISO3166_code)
+# visualize_lastest_lifespan_data(ISO3166_codes).show()
 # show_lifespan_data_by_year(ISO3166_codes, 2020)
 # print(get_lastest_lifespan_data('FRA'))
+

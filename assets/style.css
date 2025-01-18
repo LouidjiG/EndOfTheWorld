@@ -8,6 +8,35 @@ body {
     font-family: 'Lato';
 }
 
+.button-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    position: fixed;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1000;
+}
+
+.map-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #f0f0f0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.map-btn:hover {
+    background-color: #e0e0e0;
+    transform: translateX(5px);
+}
+
+.map-btn:active {
+    background-color: #d0d0d0;
+}
+
 * {
     padding: 0;
     margin: 0;
