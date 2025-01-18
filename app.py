@@ -58,7 +58,9 @@ app.layout = html.Div([
                         {"label": "Liban", "value": "Liban"},
                     ],
                     value="France",
-                    className="countryDropdown"
+                    className="countryDropdown",
+                    clearable=False
+
                 ),
             ]),
             html.Div(className="counter", children=[
@@ -92,8 +94,8 @@ app.layout = html.Div([
 
         dcc.Interval(
             id="interval-component",
-            interval=1000,  # 1 seconde (1000 ms)
-            n_intervals=0,  # Initialisation
+            interval=1000, 
+            n_intervals=0,
         )
         
     ]),    
@@ -111,7 +113,8 @@ app.layout = html.Div([
                 {"label": "Proportion of death by disease", "value": "death_by_disease"},
             ],
             value="health",
-            className="mapsDropdown"
+            className="mapsDropdown",
+            clearable=False
         ),
         html.Div(id="map-container", className="mapDiv")
 
@@ -144,10 +147,23 @@ app.layout = html.Div([
     ]),
     # Section Facts Graphs
     html.Section(className="factsGraphs", children=[
-        html.Div(className="graph"),
-        html.Div(className="graph"),
-        html.Div(className="graph"),
-        html.Div(className="graph"),
+        html.H3("IMPORTANT DETAILS"),
+        html.Div(className="graph", children=[
+            # TODO
+            # QUALITE DE L'AIR
+        ]),
+        html.Div(className="graph", children=[
+            # TODO
+            # VIH
+        ]),      
+        html.Div(className="graph", children=[
+            # TODO
+            # TREMBLEMENTS DE TERRE
+        ]),
+        html.Div(className="graph", children=[
+            # TODO
+            # DESASTRES NATURELS
+        ]),    
     ]),
 
 
