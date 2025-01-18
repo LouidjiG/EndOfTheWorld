@@ -370,7 +370,7 @@ footer p  {
 
 .factsGraphs .graph {
     width: 45%;
-    height: 400px;
+    height: auto;
     min-width: 200px;
     background-color: #2E2E2E;
 }

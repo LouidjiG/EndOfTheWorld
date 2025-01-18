@@ -8,13 +8,13 @@ CLEAN_DATA_DIR = os.path.join(DATA_DIR, 'clean')
 
 countries = ["France", "Italy", "China", "Madagascar", "Russia", "Togo", "South Korea", "Vietnam", "Algeria", "Burkina Faso", "Mauritius", "Lebanon"]
 
-def get_global_land_temperatures():
+def get_global_land_temperatures()->pd.DataFrame:
     """Reads the GlobalLandTemperaturesByCountry.csv and returns a DataFrame"""
     csv_path = os.path.join(RAW_DATA_DIR, 'GlobalLandTemperaturesByCountry.csv')
     df = pd.read_csv(csv_path)
     return df
 
-def process_global_land_temperatures(df):
+def process_global_land_temperatures(df)->pd.DataFrame:
     """Processes the GlobalLandTemperaturesByCountry data"""
     df = df[df['Country'].isin(countries)]
     
@@ -31,27 +31,27 @@ def process_global_land_temperatures(df):
     
     return yearly_df
 
-def save_global_land_temperatures(df):
+def save_global_land_temperatures(df)->None:
     """Saves the processed GlobalLandTemperaturesByCountry data"""
     filename = 'global_land_temperatures.csv'
     filepath = os.path.join(CLEAN_DATA_DIR, filename)
     df.to_csv(filepath, index=False)
 
-def load_global_land_temperatures():
+def load_global_land_temperatures()->pd.DataFrame:
     """Loads the processed GlobalLandTemperaturesByCountry data"""
     filename = 'global_land_temperatures.csv'
     filepath = os.path.join(CLEAN_DATA_DIR, filename)
     df = pd.read_csv(filepath)
     return df
 
-def visualize_global_land_temperatures():
+def visualize_global_land_temperatures()->px.bar:
     """Visualizes global land temperatures using Plotly"""
     df = load_global_land_temperatures()
     fig = px.bar(df, x='Country', y='AverageTemperature', color='Country', animation_frame='Year', range_y=[df['AverageTemperature'].min(), df['AverageTemperature'].max()], height=500)
     fig.update_layout(title='Average Temperature by Country Over Years', xaxis_title='Country', yaxis_title='Average Temperature')
     return fig
 
-def visualize_global_land_temperature_static():
+def visualize_global_land_temperature_static()->px.line:
     """Visualizes global land temperatures using Plotly"""
     df = load_global_land_temperatures()
     fig = px.line(df, x='Year', y='AverageTemperature', color='Country', height=500)

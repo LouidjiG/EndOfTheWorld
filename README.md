@@ -102,35 +102,35 @@ Nous avons respecté l'architecture demandé dans le cahier des charges du proje
 
 EndOfTheWorld/
 │
-├── main.py                  # Main application file (entry point)
-├── README.md                # Project overview and documentation
-├── requirements.txt         # Python dependencies
+├── app.py                   # Main application file (entry point; same thing as main but with a different name) <br/> 
+├── README.md                # Project overview and documentation<br/> 
+├── requirements.txt         # Python dependencies<br/> 
+│<br/> 
+├── assets/                  # Static assets and style resources<br/> 
+│   ├── style.css            # CSS file for styling the page<br/> 
+│   └── images/              # Folder containing country-specific background images<br/> 
+│       ├── France.jpg<br/> 
+│       ├── Japan.jpg<br/> 
+│       └── USA.jpg<br/> 
 │
-├── assets/                  # Static assets and style resources
-│   ├── style.css            # CSS file for styling the page
-│   └── images/              # Folder containing country-specific background images
-│       ├── France.jpg
-│       ├── Japan.jpg
-│       └── USA.jpg
-│
-├── data/raw/                # Raw data files in JSON format
-│   ├── air_quality_data_all_countries.json
-│   ├── death_by_disease_data.json
-│   ├── eq_data_2021_01_01_2021-01-10_1_10.json
-│   ├── health_personnel_data.json
-│   ├── HIV_related_death_data.json
-│   ├── lifespan_data.json
-│   ├── natural_disaster_data_100.json
-│   └── population_number.json
-│
-├── src/utils/               # Utilities for data fetching and calculations
-│   ├── __init__.py
-│   ├── calculate_doomsday_year.py
-│   ├── fetch_air_quality_data.py
-│   ├── fetch_earthquake_data.py
-│   ├── fetch_health_related_data.py
-│   ├── fetch_lifespan_data.py
-│   └── fetch_natural_disaster_data.py
+├── data/raw/                # Raw data files in JSON format<br/> 
+│   ├── air_quality_data_all_countries.json<br/> 
+│   ├── death_by_disease_data.json<br/> 
+│   ├── eq_data_2021_01_01_2021-01-10_1_10.json<br/> 
+│   ├── health_personnel_data.json<br/> 
+│   ├── HIV_related_death_data.json<br/> 
+│   ├── lifespan_data.json<br/> 
+│   ├── natural_disaster_data_100.json<br/> 
+│   └── population_number.json<br/> 
+│<br/> 
+├── src/utils/               # Utilities for data fetching and calculations<br/> 
+│   ├── __init__.py<br/> 
+│   ├── calculate_doomsday_year.py<br/> 
+│   ├── fetch_air_quality_data.py<br/> 
+│   ├── fetch_earthquake_data.py<br/> 
+│   ├── fetch_health_related_data.py<br/> 
+│   ├── fetch_lifespan_data.py<br/> 
+│   └── fetch_natural_disaster_data.py<br/> 
 
 
 ## Analysis Report
